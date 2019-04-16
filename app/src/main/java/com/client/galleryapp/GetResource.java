@@ -25,7 +25,7 @@ public class GetResource {
             Cursor cursor = context.getContentResolver().query(uri, projection, null, null, null);
 
 
-            while (cursor.moveToNext()) {
+            while (cursor != null) {
                 String absolutePathOfImage = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
 
                 File f = new File(absolutePathOfImage);
@@ -45,6 +45,8 @@ public class GetResource {
                     a.setName(parent);
                     listOfAllAlbum.add(a);
                 }
+
+                cursor.moveToNext();
             }
 
             return listOfAllAlbum;
