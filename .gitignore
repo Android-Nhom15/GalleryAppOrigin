@@ -11,3 +11,7 @@
 /build
 /captures
 .externalNativeBuild
+
+./ideal
+.idea/misc.xml
+.idea/vcs.xml
