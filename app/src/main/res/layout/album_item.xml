@@ -12,8 +12,7 @@
         android:layout_gravity="center"
         android:background="@drawable/button_background"
         android:padding="10dp"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/icon_album" />
+        android:scaleType="fitCenter"/>
 
     <TextView
         android:id="@+id/AlbumName"

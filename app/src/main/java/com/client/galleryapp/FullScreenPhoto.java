@@ -14,8 +14,6 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class FullScreenPhoto extends AppCompatActivity {
-
-    ImageView fullImage;
     int selectedPos;
     ViewPager viewPager;
     @Override

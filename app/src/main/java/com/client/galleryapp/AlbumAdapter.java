@@ -13,9 +13,9 @@ import java.util.ArrayList;
 public class AlbumAdapter extends BaseAdapter {
     private Context context;
     private int layout;
-    private ArrayList<String> albumList;
+    private ArrayList<Album> albumList;
 
-    public AlbumAdapter(Context context, int layout, ArrayList<String> albumList) {
+    public AlbumAdapter(Context context, int layout, ArrayList<Album> albumList) {
         this.context = context;
         this.layout = layout;
         this.albumList = albumList;
@@ -37,6 +37,7 @@ public class AlbumAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
+        ImageView mIcon;
         TextView mAlbumName;
         TextView mNumberOfPhotos;
     }
@@ -50,14 +51,37 @@ public class AlbumAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(layout, null);//??
             viewHolder.mAlbumName = (TextView) convertView.findViewById(R.id.AlbumName);
+            viewHolder.mIcon = (ImageView) convertView.findViewById(R.id.icon);
             viewHolder.mNumberOfPhotos = (TextView) convertView.findViewById(R.id.NumberOfPhotos);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.mAlbumName.setText(albumList.get(position));
-        viewHolder.mNumberOfPhotos.setText("7");
+        viewHolder.mIcon.setImageResource(R.drawable.icon_album);
+        String mName = albumList.get(position).getName();
+        if(mName.equals("Messenger"))
+        {
+            viewHolder.mIcon.setImageResource(R.drawable.a1);
+        }
+        if(mName.equals("Camera"))
+        {
+            viewHolder.mIcon.setImageResource(R.drawable.a2);
+        }
+        if(mName.equals("Download"))
+        {
+            viewHolder.mIcon.setImageResource(R.drawable.a3);
+        }
+        if(mName.equals("Screenshots"))
+        {
+            viewHolder.mIcon.setImageResource(R.drawable.a4);
+        }
+        if(mName.equals("Facebook"))
+        {
+            viewHolder.mIcon.setImageResource(R.drawable.a5);
+        }
+        viewHolder.mAlbumName.setText(albumList.get(position).getName());
+        viewHolder.mNumberOfPhotos.setText(albumList.get(position).getImages().size());
         return convertView;
     }
 }
