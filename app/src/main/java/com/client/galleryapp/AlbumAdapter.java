@@ -68,11 +68,11 @@ public class AlbumAdapter extends BaseAdapter {
         {
             viewHolder.mIcon.setImageResource(R.drawable.a2);
         }
-        if(mName.equals("Download"))
+        if(mName.equals("Screenshots"))
         {
             viewHolder.mIcon.setImageResource(R.drawable.a3);
         }
-        if(mName.equals("Screenshots"))
+        if(mName.equals("Download"))
         {
             viewHolder.mIcon.setImageResource(R.drawable.a4);
         }
@@ -81,7 +81,8 @@ public class AlbumAdapter extends BaseAdapter {
             viewHolder.mIcon.setImageResource(R.drawable.a5);
         }
         viewHolder.mAlbumName.setText(albumList.get(position).getName());
-        viewHolder.mNumberOfPhotos.setText(albumList.get(position).getImages().size());
+        String k = String.valueOf(albumList.get(position).getImages().size());
+        viewHolder.mNumberOfPhotos.setText(k);
         return convertView;
     }
 }

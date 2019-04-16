@@ -30,7 +30,7 @@ public class GetResource {
 
                 File f = new File(absolutePathOfImage);
 
-                String parent = f.getParent().substring(f.getParent().lastIndexOf('/'));
+                String parent = f.getParent().substring(f.getParent().lastIndexOf('/')+1);
 
                 boolean checkExist = false;
                 for (int i = 0; i < listOfAllAlbum.size(); i++) {

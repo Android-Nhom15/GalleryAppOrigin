@@ -1,8 +1,11 @@
 package com.client.galleryapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +18,10 @@ import android.widget.ImageView;
 import java.io.File;
 import java.util.ArrayList;
 
-public class ShowAnAlbum extends AppCompatActivity {
+public class ShowAnAlbum extends Activity {
     GridView gridView;
     int selectedPos;
+    Bitmap bitmap;
     ArrayList<Album> mAlbum = new ArrayList<>();
     ArrayList<File> mPhotoViewList = new ArrayList<>();
     @Override
@@ -25,19 +29,16 @@ public class ShowAnAlbum extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_an_album);
         gridView = findViewById(R.id.gridview_an_album);
-
-        selectedPos = getIntent().getExtras().getInt("img");
-        mAlbum = (ArrayList<Album>) getIntent().getExtras().get("list");
+        selectedPos = (Integer) getIntent().getExtras().getInt("img");
+        GetResource getResource = new GetResource(this);
+        mAlbum = getResource.getAllShownImagesPath();
         mPhotoViewList = mAlbum.get(selectedPos).getImages();
-        ImagesAdapter adapter = new ImagesAdapter(this, R.layout.gridview_item_of_an_album, mPhotoViewList , R.id.iv_photo_an_album);
+        ImagesAnAlbumAdapter adapter = new ImagesAnAlbumAdapter(this, R.layout.gridview_item_of_an_album, mPhotoViewList);
         gridView.setAdapter(adapter);
-    }
-    public void onResume() {
-        super.onResume();
         gridView.setOnItemClickListener(itemClickListener);
     }
 
-    private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+    public AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent intent = new Intent(getBaseContext(), FullScreenPhoto.class);
@@ -47,4 +48,53 @@ public class ShowAnAlbum extends AppCompatActivity {
             startActivity(intent);
         }
     };
+    public class ImagesAnAlbumAdapter extends BaseAdapter {
+        private Context context;
+        private int layout;
+        private ArrayList<File> photoViewList;
+
+        public ImagesAnAlbumAdapter(Context context, int layout, ArrayList<File> photoViewList) {
+            this.context = context;
+            this.layout = layout;
+            this.photoViewList = photoViewList;
+        }
+
+        @Override
+        public int getCount() {
+            return photoViewList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        private class ViewHolder {
+            ImageView photo;
+        }
+
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder viewHolder;
+            if (convertView == null) {
+                viewHolder = new ViewHolder();
+                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(layout, null);
+                viewHolder.photo = (ImageView) convertView.findViewById(R.id.iv_photo_an_album);
+                convertView.setTag(viewHolder);
+            } else {
+                viewHolder = (ViewHolder) convertView.getTag();
+            }
+            bitmap= BitmapFactory.decodeFile(photoViewList.get(position).toString());
+            viewHolder.photo.setImageBitmap(bitmap);
+            return convertView;
+        }
+    }
+
 }

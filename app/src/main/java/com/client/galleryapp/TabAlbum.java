@@ -26,18 +26,16 @@ public class TabAlbum extends Fragment {
         gridView.setAdapter(albumAdapter);
         return rootView;
     }
+
     public void onResume() {
         super.onResume();
         gridView.setOnItemClickListener(itemClickListener);
     }
-
-    private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+    public AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
             Intent intent = new Intent(getActivity().getBaseContext(), ShowAnAlbum.class);
             intent.putExtra("img", position);
-            intent.putExtra("list", mAlbum);
             startActivity(intent);
         }
     };

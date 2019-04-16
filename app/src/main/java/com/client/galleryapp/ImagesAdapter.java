@@ -1,6 +1,8 @@
 package com.client.galleryapp;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,13 +17,12 @@ public class ImagesAdapter extends BaseAdapter {
     private Context context;
     private int layout;
     private ArrayList<File> photoViewList;
-    private int idItem;
+    Bitmap bitmap;
 
-    public ImagesAdapter(Context context, int layout, ArrayList<File> photoViewList, int idItem) {
+    public ImagesAdapter(Context context, int layout, ArrayList<File> photoViewList) {
         this.context = context;
         this.layout = layout;
         this.photoViewList = photoViewList;
-        this.idItem = idItem;
     }
 
     @Override
@@ -50,14 +51,14 @@ public class ImagesAdapter extends BaseAdapter {
         if (convertView == null) {
             viewHolder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(layout, null);//??
-            viewHolder.photo = (ImageView) convertView.findViewById(idItem);
+            convertView = inflater.inflate(layout, null);
+            viewHolder.photo = (ImageView) convertView.findViewById(R.id.iv_photo);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
-        viewHolder.photo.setImageURI(Uri.parse(photoViewList.get(position).toString())); //Change as setImageURI when we have URI
+        bitmap = BitmapFactory.decodeFile(photoViewList.get(position).toString());
+        viewHolder.photo.setImageBitmap(bitmap);
         return convertView;
     }
 }
