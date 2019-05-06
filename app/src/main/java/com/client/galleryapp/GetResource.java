@@ -14,10 +14,10 @@ public class GetResource {
         this.context = context;
     }
 
-    public ArrayList<File> getAllShownImagesPath() {
+    public ArrayList<Album> getAllShownImagesPath() {
 
         try {
-            ArrayList<File> listOfAllImages = new ArrayList<>();
+            ArrayList<Album> listOfAllAlbum = new ArrayList<>();
 
             Uri uri = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 
@@ -27,11 +27,30 @@ public class GetResource {
 
             while (cursor.moveToNext()) {
                 String absolutePathOfImage = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
-                File tmp = new File(absolutePathOfImage);
-                listOfAllImages.add(tmp);
+
+                File f = new File(absolutePathOfImage);
+
+                String parent = f.getParent().substring(f.getParent().lastIndexOf('/')+1);
+
+                boolean checkExist = false;
+                for (int i = 0; i < listOfAllAlbum.size(); i++) {
+                    if (parent.compareTo(listOfAllAlbum.get(i).getName()) == 0) {
+                        listOfAllAlbum.get(i).add(f);
+                        checkExist = true;
+                        break;
+                    }
+                }
+                if (!checkExist) {
+                    Album a = new Album();
+                    a.setName(parent);
+                    listOfAllAlbum.add(a);
+                    listOfAllAlbum.get(listOfAllAlbum.size() - 1).add(f);
+                }
+
+//                cursor.moveToNext();
             }
 
-            return listOfAllImages;
+            return listOfAllAlbum;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
