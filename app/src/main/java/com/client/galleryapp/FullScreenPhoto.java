@@ -1,11 +1,11 @@
 package com.client.galleryapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -13,9 +13,7 @@ import android.widget.ImageView;
 import java.io.File;
 import java.util.ArrayList;
 
-public class FullScreenPhoto extends AppCompatActivity {
-
-    ImageView fullImage;
+public class FullScreenPhoto extends Activity {
     int selectedPos;
     ViewPager viewPager;
     @Override
@@ -23,9 +21,6 @@ public class FullScreenPhoto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen_photo);
         viewPager = findViewById(R.id.imageViewFullScreen);
-    }
-    protected void onResume() {
-        super.onResume();
         final String sender=this.getIntent().getExtras().getString("SENDER_KEY");
         if(sender != null)
         {
