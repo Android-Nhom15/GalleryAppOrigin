@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,14 +24,21 @@ public class TabAllPhoto extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.all_photo_tab, container, false);
         gridView = (GridView) rootView.findViewById(R.id.all_photo_gridview);
-            GetResource getResource = new GetResource(getActivity());
-            ArrayList<Album> albums = getResource.getAllShownImagesPath();
-            for(Album element :albums){
-                for(File file : element.getImages()){
-                    listFileImage.add(file);
-                }
+        GetResource getResource = new GetResource(getActivity());
+        ArrayList<Album> albums = getResource.getAllShownImagesPath();
+        for(Album element :albums){
+            for(File file : element.getImages()){
+                listFileImage.add(file);
             }
-        ImagesAdapter imagesAdapter = new ImagesAdapter(getActivity(), R.layout.gridview_item_of_showall, listFileImage);
+        }
+
+        ArrayList<File> listFileImageShow = new ArrayList<>();
+        for (int i = 0; i<30;i++){
+            listFileImageShow.add(listFileImage.get(i));
+
+        }
+
+        ImagesAdapter imagesAdapter = new ImagesAdapter(getActivity().getApplicationContext(), listFileImage);
         gridView.setAdapter(imagesAdapter);
         return rootView;
     }
