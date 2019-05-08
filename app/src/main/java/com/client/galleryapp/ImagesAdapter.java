@@ -78,7 +78,7 @@ public class ImagesAdapter extends BaseAdapter {
 
         Glide.with(context).load(Uri.fromFile(photoViewList.get(position)))
                 .centerCrop()
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.waitting_for_load)
                 .into(iv_photo);
 
 

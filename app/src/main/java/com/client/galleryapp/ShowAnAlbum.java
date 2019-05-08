@@ -15,6 +15,8 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -81,18 +83,14 @@ public class ShowAnAlbum extends Activity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder viewHolder;
-            if (convertView == null) {
-                viewHolder = new ViewHolder();
-                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = inflater.inflate(layout, null);
-                viewHolder.photo = (ImageView) convertView.findViewById(R.id.iv_photo_an_album);
-                convertView.setTag(viewHolder);
-            } else {
-                viewHolder = (ViewHolder) convertView.getTag();
-            }
-            bitmap= BitmapFactory.decodeFile(photoViewList.get(position).toString());
-            viewHolder.photo.setImageBitmap(bitmap);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.gridview_item_of_an_album, null);
+            ImageView iv_photo = (ImageView)convertView.findViewById(R.id.iv_photo_an_album);
+
+            Glide.with(context).load(Uri.fromFile(photoViewList.get(position)))
+                    .centerCrop()
+                    .placeholder(R.drawable.waitting_for_load)
+                    .into(iv_photo);
             return convertView;
         }
     }
