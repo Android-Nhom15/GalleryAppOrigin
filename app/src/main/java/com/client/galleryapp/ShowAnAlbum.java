@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
@@ -22,21 +23,25 @@ import java.util.ArrayList;
 
 public class ShowAnAlbum extends Activity {
     GridView gridView;
+    TextView textView;
     int selectedPos;
-    Bitmap bitmap;
     ArrayList<Album> mAlbum = new ArrayList<>();
+    String _AlbumName;
     ArrayList<File> mPhotoViewList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_an_album);
+        textView = findViewById(R.id.AlbumName);
         gridView = findViewById(R.id.gridview_an_album);
         selectedPos = (Integer) getIntent().getExtras().getInt("img");
         GetResource getResource = new GetResource(this);
         mAlbum = getResource.getAllShownImagesPath();
         mPhotoViewList = mAlbum.get(selectedPos).getImages();
+        _AlbumName = mAlbum.get(selectedPos).getName();
         ImagesAnAlbumAdapter adapter = new ImagesAnAlbumAdapter(this, R.layout.gridview_item_of_an_album, mPhotoViewList);
         gridView.setAdapter(adapter);
+        textView.setText(_AlbumName);
         gridView.setOnItemClickListener(itemClickListener);
     }
 

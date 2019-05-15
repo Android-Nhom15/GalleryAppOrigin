@@ -80,6 +80,7 @@ public class GalleryItemAdapter extends RecyclerView.Adapter<GalleryItemAdapter.
             Glide.with(context)
                     .load(picture.getPath())
                     .apply(options)
+                    .placeholder(R.drawable.waitting_for_load)
                     .into(imageViewPictureItem);
             if (picture.getSelectedCount() > 0) {
                 textViewSelectCount.setBackground(context.getResources().getDrawable(R.drawable.background_count_selected));

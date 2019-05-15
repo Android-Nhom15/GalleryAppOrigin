@@ -50,7 +50,7 @@ public class ImageSelectedAdapter extends RecyclerView.Adapter<ImageSelectedAdap
         }
 
         public void bind(Photo photo) {
-            RequestOptions options = new RequestOptions().skipMemoryCache(true).override(200).placeholder(R.drawable.ic_launcher_background);
+            RequestOptions options = new RequestOptions().skipMemoryCache(true).override(200);
 //                    .centerCrop()
 //                    .placeholder(R.drawable.ic_camera)
 //                    .error(R.drawable.ic_send)
