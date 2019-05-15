@@ -59,10 +59,13 @@ public class OneMonthImageAdapter extends BaseAdapter {
         iv_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(context, FullScreenPhoto.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("SENDER_KEY", "MyFragment");
                 intent.putExtra("img", position);
                 intent.putExtra("list", fileImages);
+
                 context.startActivity(intent)   ;
             }
         });
