@@ -74,9 +74,6 @@ public class FullScreenPhoto extends Activity {
                     .fitCenter()
                     .placeholder(R.drawable.waitting_for_load)
                     .into(photoView);
-
-
-            photoView.setImageURI(Uri.parse(mPhotoViewList.get(position).toString()));
             container.addView(view,0);
             return view;
         }
