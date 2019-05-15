@@ -7,6 +7,7 @@ import android.provider.MediaStore;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class GetResource {
     private Context context;
@@ -51,6 +52,49 @@ public class GetResource {
             }
 
             return listOfAllAlbum;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<JDate> getImageByDate(){
+        try {
+            ArrayList<JDate> listImageByDate = new ArrayList<>();
+
+            Uri uri = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+
+            String[] projection = {MediaStore.MediaColumns.DATA};
+            Cursor cursor = context.getContentResolver().query(uri, projection, null, null, null);
+
+
+            while (cursor.moveToNext()) {
+                String absolutePathOfImage = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
+
+                File f = new File(absolutePathOfImage);
+
+                boolean exist = false;
+                for (int i = 0; i < listImageByDate.size(); i++)
+                {
+                    if (listImageByDate.get(i).getDate().getMonth() == (new Date(f.lastModified())).getMonth()
+                            && listImageByDate.get(i).getDate().getYear() == (new Date(f.lastModified())).getYear())
+                    {
+                        listImageByDate.get(i).getFileImage().add(f);
+                        exist = true;
+                        break;
+                    }
+                }
+                if (!exist)
+                {
+                    JDate jdate = new JDate();
+                    Date date = new Date(f.lastModified());
+                    jdate.setDate(date);
+                    jdate.getFileImage().add(f);
+                    listImageByDate.add(jdate);
+                }
+            }
+
+            return listImageByDate;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

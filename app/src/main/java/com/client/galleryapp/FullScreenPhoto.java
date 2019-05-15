@@ -6,9 +6,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+
+
+import com.bumptech.glide.Glide;
+import com.github.chrisbanes.photoview.PhotoView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -42,6 +46,7 @@ public class FullScreenPhoto extends Activity {
     public class SliderAdapter extends PagerAdapter {
         private Context mContext;
         private ArrayList<File> mPhotoViewList;
+        private LayoutInflater inflater;
 
         SliderAdapter(Context context) {
             mContext = context;
@@ -60,16 +65,25 @@ public class FullScreenPhoto extends Activity {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            ImageView imageView = new ImageView(mContext);
-            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            imageView.setImageURI(Uri.parse(mPhotoViewList.get(position).toString()));
-            container.addView(imageView, 0);
-            return imageView;
+
+            inflater =(LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.photo_full,container,false);
+            PhotoView photoView = view.findViewById(R.id.full_img);
+
+            Glide.with(mContext).load(Uri.fromFile(mPhotoViewList.get(position)))
+                    .fitCenter()
+                    .placeholder(R.drawable.waitting_for_load)
+                    .into(photoView);
+
+
+            photoView.setImageURI(Uri.parse(mPhotoViewList.get(position).toString()));
+            container.addView(view,0);
+            return view;
         }
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((ImageView) object);
+            container.removeView((PhotoView) object);
         }
     }
 }
