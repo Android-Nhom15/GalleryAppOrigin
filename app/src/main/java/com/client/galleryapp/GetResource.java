@@ -44,7 +44,10 @@ public class GetResource {
                     Album a = new Album();
                     a.setName(parent);
                     listOfAllAlbum.add(a);
+                    listOfAllAlbum.get(listOfAllAlbum.size() - 1).add(f);
                 }
+
+//                cursor.moveToNext();
             }
 
             return listOfAllAlbum;
