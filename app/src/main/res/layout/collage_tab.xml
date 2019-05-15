@@ -1,29 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainActivity"
-    android:id="@+id/constraintLayout"
-    android:orientation="horizontal"
-    >
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_collage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="50dp"
-        app:backgroundTint="#fff111"
-        app:fabSize="normal" />
-
+    tools:context=".MainActivity">
     <GridView
+        android:numColumns="3"
         android:id="@+id/gridview_album_collage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:numColumns="3" />
-
-
-</android.support.design.widget.CoordinatorLayout>
+        android:layout_height="match_parent" />
+</LinearLayout>

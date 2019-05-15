@@ -1,37 +1,30 @@
 package com.client.galleryapp;
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.FloatingActionButton;
+import android.content.Context;
+import android.os.Environment;
 import android.support.design.widget.TabLayout;
+import android.support.v7.app.AppCompatActivity;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.View;
+import android.view.ViewGroup;
 
-import java.util.ArrayList;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
-    FloatingActionButton fab_collage;
-
-    private RecyclerView recyclerViewGallery;
-    private ArrayList<Photo> pictures;
-    GalleryItemAdapter adapter;
-    Handler handler;
-
-    private ImageView imageViewButtonSend;
-    private TextView textViewSelectedCount;
-    private ConstraintLayout constraintLayoutSend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            Log.w("asd",Integer.toString(position));
-            if (position == 0) {
+           if (position == 0) {
                TabAllPhoto tab1 = new TabAllPhoto();
                return tab1;
            }
@@ -88,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
                return tab3;
            }
         }
-
 
         @Override
         public int getCount() {
