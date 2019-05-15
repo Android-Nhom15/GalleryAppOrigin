@@ -1,18 +1,13 @@
 package com.client.galleryapp;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -33,7 +28,7 @@ public class TabAllPhoto extends Fragment {
         }
 
         ArrayList<File> listFileImageShow = new ArrayList<>();
-        for (int i = 0; i<30;i++){
+        for (int i = 0; i<24;i++){
             listFileImageShow.add(listFileImage.get(i));
 
         }
