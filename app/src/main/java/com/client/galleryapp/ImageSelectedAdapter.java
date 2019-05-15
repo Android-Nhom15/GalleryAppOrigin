@@ -58,6 +58,7 @@ public class ImageSelectedAdapter extends RecyclerView.Adapter<ImageSelectedAdap
             Glide.with(context)
                     .load(photo.getPath())
                     .apply(options)
+                    .placeholder(R.drawable.waitting_for_load)
                     .into(imageViewSeleted);
         }
     }

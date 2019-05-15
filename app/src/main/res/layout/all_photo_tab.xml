@@ -10,5 +10,7 @@
         android:numColumns="3"
         android:id="@+id/all_photo_gridview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:paddingBottom="40dp"
+        />
 </LinearLayout>
