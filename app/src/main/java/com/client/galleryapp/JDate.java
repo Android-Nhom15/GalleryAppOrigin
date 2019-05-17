@@ -32,4 +32,5 @@ public class JDate {
     public void setFileImage(ArrayList<File> fileImage) {
         this.fileImage = fileImage;
     }
+
 }

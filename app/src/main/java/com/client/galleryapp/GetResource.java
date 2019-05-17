@@ -7,6 +7,7 @@ import android.provider.MediaStore;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 public class GetResource {
@@ -83,6 +84,7 @@ public class GetResource {
                         exist = true;
                         break;
                     }
+                    Collections.sort(listImageByDate.get(i).getFileImage());
                 }
                 if (!exist)
                 {
