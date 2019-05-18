@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class TimelineAdapter extends BaseAdapter {
+public class AllPhotoAdapter extends BaseAdapter {
 
     private Context context;
     private int layout;
     private ArrayList<JDate> timeline;
 
-    public TimelineAdapter(Context context, int layout, ArrayList<JDate> timeline) {
+    public AllPhotoAdapter(Context context, int layout, ArrayList<JDate> timeline) {
         this.context = context;
         this.layout = layout;
         this.timeline = timeline;
@@ -52,7 +52,7 @@ public class TimelineAdapter extends BaseAdapter {
             convertView.setTag(viewHolder);
         }
         else {
-            viewHolder = (TimelineAdapter.ViewHolder) convertView.getTag();
+            viewHolder = (AllPhotoAdapter.ViewHolder) convertView.getTag();
         }
 
         Calendar calendar = new GregorianCalendar();

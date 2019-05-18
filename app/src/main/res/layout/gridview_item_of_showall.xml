@@ -6,9 +6,9 @@
     <ImageView
         android:id="@+id/iv_photo"
         android:adjustViewBounds="true"
-        android:layout_height="120dp"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:layout_margin="2dp"
-        android:layout_width="120dp"/>
+        android:layout_width="match_parent"/>
 
 </LinearLayout>

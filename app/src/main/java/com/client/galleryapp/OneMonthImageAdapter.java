@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class OneMonthImageAdapter extends BaseAdapter {
 
@@ -49,8 +50,7 @@ public class OneMonthImageAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = inflater.inflate(R.layout.item_2_showbydate, null);
-        ImageView iv_photo = (ImageView)convertView.findViewById(R.id.imageViewByDate);
-
+        ImageView iv_photo = (ImageView) convertView.findViewById(R.id.imageViewByDate);
         Glide.with(context).load(Uri.fromFile(fileImages.get(position)))
                 .centerCrop()
                 .placeholder(R.drawable.waitting_for_load)
@@ -65,8 +65,7 @@ public class OneMonthImageAdapter extends BaseAdapter {
                 intent.putExtra("SENDER_KEY", "MyFragment");
                 intent.putExtra("img", position);
                 intent.putExtra("list", fileImages);
-
-                context.startActivity(intent)   ;
+                context.startActivity(intent);
             }
         });
 

@@ -4,26 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <Button
         android:id="@+id/editPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/imageViewFullScreen"
         android:background="@android:color/transparent"
+        android:layout_alignRight="@+id/imageViewFullScreen"
         android:text="Sửa" />
-
     <Button
         android:id="@+id/deletePhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/imageViewFullScreen"
-        android:layout_marginRight="100dp"
         android:background="@android:color/transparent"
+        android:layout_alignRight="@+id/imageViewFullScreen"
+        android:layout_marginTop="60dp"
         android:text="Xóa" />
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/imageViewFullScreen"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="wrap_content"
+        android:layout_height="360dp" />
 </RelativeLayout>

@@ -84,6 +84,7 @@ public class GetResource {
                         exist = true;
                         break;
                     }
+                    Collections.sort(listImageByDate.get(i).getFileImage());
                 }
                 if (!exist)
                 {

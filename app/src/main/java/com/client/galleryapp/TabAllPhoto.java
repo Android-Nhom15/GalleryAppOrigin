@@ -1,56 +1,66 @@
 package com.client.galleryapp;
 
-import android.content.Intent;
+import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.os.Handler;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
+import android.widget.ListView;
 
-import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class TabAllPhoto extends Fragment {
-    GridView gridView;
-    ArrayList<File> listFileImage = new ArrayList<>();
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.all_photo_tab, container, false);
-        gridView = (GridView) rootView.findViewById(R.id.all_photo_gridview);
-        GetResource getResource = new GetResource(getActivity());
-        ArrayList<Album> albums = getResource.getAllShownImagesPath();
-        for(Album element :albums){
-            for(File file : element.getImages()){
-                listFileImage.add(file);
+    ListView gridView;
+    SwipeRefreshLayout swipeLayout;
+    ArrayList<JDate> timeline;
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        final View rootView = inflater.inflate(R.layout.activity_show_by_date, container, false);
+        gridView = (ListView) rootView.findViewById(R.id.gridViewAllMonth);
+        swipeLayout = (SwipeRefreshLayout)rootView.findViewById(R.id.swipe_container);
+        final GetResource getResource = new GetResource(getActivity());
+        timeline = getResource.getImageByDate();
+        Collections.sort(timeline, new DateComparator());
+        final AllPhotoAdapter timelineAdapter = new AllPhotoAdapter(getActivity().getApplicationContext(), R.layout.item_showbydate, timeline);
+        gridView.setAdapter(timelineAdapter);
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code here
+                // To keep animation for 4 seconds
+                new Handler().postDelayed(new Runnable() {
+                    @Override public void run() {
+                        timeline = getResource.getImageByDate();
+                        Collections.sort(timeline, new DateComparator());
+                        final AllPhotoAdapter timelineAdapter = new AllPhotoAdapter(getActivity().getApplicationContext(), R.layout.item_showbydate, timeline);
+                        gridView.setAdapter(timelineAdapter);
+                        swipeLayout.setRefreshing(false);
+                    }
+                }, 2000); // Delay in millis
             }
-        }
+        });
 
-        ArrayList<File> listFileImageShow = new ArrayList<>();
-        for (int i = 0; i<24;i++){
-            listFileImageShow.add(listFileImage.get(i));
-
-        }
-
-        ImagesAdapter imagesAdapter = new ImagesAdapter(getActivity().getApplicationContext(), listFileImage);
-        gridView.setAdapter(imagesAdapter);
+        // Scheme colors for animation
+        swipeLayout.setColorSchemeColors(
+                getResources().getColor(android.R.color.holo_blue_bright),
+                getResources().getColor(android.R.color.holo_green_light),
+                getResources().getColor(android.R.color.holo_orange_light),
+                getResources().getColor(android.R.color.holo_red_light)
+        );
         return rootView;
     }
-    public void onResume() {
-        super.onResume();
-        gridView.setOnItemClickListener(itemClickListener);
-    }
-
-    private AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Intent intent = new Intent(getActivity().getBaseContext(), FullScreenPhoto.class);
-            intent.putExtra("SENDER_KEY", "MyFragment");
-            intent.putExtra("img", position);
-            intent.putExtra("list", listFileImage);
-            startActivity(intent);
+    public class DateComparator implements Comparator<JDate>
+    {
+        public int compare(JDate left, JDate right) {
+            return -left.getDate().compareTo(right.getDate());
         }
-    };
+    }
 }
-

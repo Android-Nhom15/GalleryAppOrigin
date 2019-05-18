@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             Log.w("asd",Integer.toString(position));
             if (position == 0) {
-               TabTimeline tab1 = new TabTimeline();
+               TabAllPhoto tab1 = new TabAllPhoto();
                return tab1;
            }
            if (position == 1){
