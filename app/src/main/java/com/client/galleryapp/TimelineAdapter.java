@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class TimelineAdapter extends BaseAdapter {
 
@@ -53,7 +55,13 @@ public class TimelineAdapter extends BaseAdapter {
             viewHolder = (TimelineAdapter.ViewHolder) convertView.getTag();
         }
 
-        String mDateMonth = timeline.get(position).getDate().toString();
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(timeline.get(position).getDate());
+        int year = calendar.get(Calendar.YEAR);
+        //Add one to month {0 - 11}
+        int month = calendar.get(Calendar.MONTH) + 1;
+        String mDateMonth = "Tháng " + month + ", " + year;
+
         viewHolder.txtDateMonth.setText(mDateMonth);
 
         // Load ảnh vào gridview

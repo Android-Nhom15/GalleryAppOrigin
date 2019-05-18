@@ -13,6 +13,11 @@ public class JDate {
         this.fileImage = fileImage;
     }
 
+    public JDate(JDate jdate){
+        this.date = jdate.getDate();
+        this.fileImage = jdate.getFileImage();
+    }
+
     public JDate() {
         fileImage = new ArrayList<>();
     }

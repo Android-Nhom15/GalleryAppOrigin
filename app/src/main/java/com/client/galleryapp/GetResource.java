@@ -7,6 +7,7 @@ import android.provider.MediaStore;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 public class GetResource {
@@ -91,6 +92,17 @@ public class GetResource {
                     jdate.setDate(date);
                     jdate.getFileImage().add(f);
                     listImageByDate.add(jdate);
+                }
+            }
+
+            for (int i = 0; i < listImageByDate.size() - 1; i++)
+            {
+                for (int j = i + 1; j <listImageByDate.size(); j++)
+                {
+                    if (listImageByDate.get(i).getDate().compareTo(listImageByDate.get(j).getDate()) > 0)
+                    {
+                        Collections.swap(listImageByDate,i,j);
+                    }
                 }
             }
 
