@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/FullScreen"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
     <Button
         android:id="@+id/editPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:layout_alignRight="@+id/imageViewFullScreen"
+        android:layout_gravity="right|top"
+        android:fontFamily="@font/dancing_script"
         android:text="Sửa" />
+
     <Button
         android:id="@+id/deletePhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:background="@android:color/transparent"
-        android:layout_alignRight="@+id/imageViewFullScreen"
-        android:layout_marginTop="60dp"
+        android:fontFamily="@font/dancing_script"
+        android:layout_gravity="right|top"
         android:text="Xóa" />
-
 
     <android.support.v4.view.ViewPager
         android:id="@+id/imageViewFullScreen"
-        android:layout_width="wrap_content"
-        android:layout_height="360dp" />
-</RelativeLayout>
+        android:scaleType="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</FrameLayout>

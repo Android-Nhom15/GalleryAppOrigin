@@ -7,7 +7,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,6 +27,7 @@ public class FullScreenPhoto extends Activity {
     int selectedPos;
     ViewPager viewPager;
     Button edit;
+    Button del;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,21 +36,25 @@ public class FullScreenPhoto extends Activity {
         final String sender=this.getIntent().getExtras().getString("SENDER_KEY");
         selectedPos = getIntent().getExtras().getInt("img");
         edit =(Button) findViewById(R.id.editPhoto);
+        del = (Button) findViewById(R.id.deletePhoto);
         final ArrayList<File> fileImages = (ArrayList<File>) getIntent().getExtras().get("list");
         if(sender != null)
         {
             this.receiveData(selectedPos, fileImages);
         }
-        edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick( View v) {
-                Intent intent = new Intent(getBaseContext().getApplicationContext(), PhotoEdit.class);
-                intent.setFlags(Intent. FLAG_ACTIVITY_NEW_TASK);
-                int pos = viewPager.getCurrentItem();
-                intent.putExtra("img", fileImages.get(viewPager.getCurrentItem()));
-                startActivity(intent);
-            }
-        });
+            edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick( View v) {
+                    Intent intent = new Intent(getBaseContext().getApplicationContext(), PhotoEdit.class);
+                    intent.setFlags(Intent. FLAG_ACTIVITY_NEW_TASK);
+                    int pos = viewPager.getCurrentItem();
+                    intent.putExtra("img", fileImages.get(viewPager.getCurrentItem()));
+                    startActivity(intent);
+                }
+            });
+
+
+
     }
     private void receiveData(int selectedPos, ArrayList<File> ListImage) {
         try {
