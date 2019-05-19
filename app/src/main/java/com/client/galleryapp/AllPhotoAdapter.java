@@ -47,6 +47,7 @@ public class AllPhotoAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(layout, null);
             viewHolder.txtDateMonth = (TextView) convertView.findViewById(R.id.txtDateMonth);
+
             viewHolder.gridViewOneMonth = (ExpandableHeightGridView) convertView.findViewById(R.id.gridViewOneMonth);
             viewHolder.gridViewOneMonth.setExpanded(true);
             convertView.setTag(viewHolder);
