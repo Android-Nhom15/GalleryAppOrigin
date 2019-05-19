@@ -1,4 +1,4 @@
-package com.client.galleryapp;
+package com.client.galleryapp.adapters;
 
 import android.content.Context;
 import android.net.Uri;
@@ -6,10 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.client.galleryapp.R;
+import com.client.galleryapp.tabalbum.Album;
 
 import java.util.ArrayList;
 

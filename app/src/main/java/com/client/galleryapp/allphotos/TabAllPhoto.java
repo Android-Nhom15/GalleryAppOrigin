@@ -1,6 +1,5 @@
-package com.client.galleryapp;
+package com.client.galleryapp.allphotos;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +10,10 @@ import android.view.View;
 import android.os.Handler;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
+import com.client.galleryapp.resourcedata.GetResource;
+import com.client.galleryapp.resourcedata.JDate;
+import com.client.galleryapp.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.client.galleryapp;
+package com.client.galleryapp.resourcedata;
 
 import android.content.Context;
 import android.database.Cursor;

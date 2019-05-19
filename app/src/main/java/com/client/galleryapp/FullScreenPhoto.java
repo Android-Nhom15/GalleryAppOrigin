@@ -14,6 +14,7 @@ import android.widget.Button;
 
 
 import com.bumptech.glide.Glide;
+import com.client.galleryapp.filtercoler.PhotoEdit;
 import com.github.chrisbanes.photoview.PhotoView;
 
 import java.io.File;

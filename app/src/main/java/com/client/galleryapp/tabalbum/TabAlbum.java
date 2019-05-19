@@ -1,4 +1,4 @@
-package com.client.galleryapp;
+package com.client.galleryapp.tabalbum;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import java.io.File;
+import com.client.galleryapp.adapters.AlbumAdapter;
+import com.client.galleryapp.resourcedata.GetResource;
+import com.client.galleryapp.R;
+
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class TabAlbum extends Fragment {
     GridView gridView;

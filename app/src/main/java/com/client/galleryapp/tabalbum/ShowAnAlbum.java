@@ -1,10 +1,8 @@
-package com.client.galleryapp;
+package com.client.galleryapp.tabalbum;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.client.galleryapp.FullScreenPhoto;
+import com.client.galleryapp.resourcedata.GetResource;
+import com.client.galleryapp.R;
 
 import java.io.File;
 import java.util.ArrayList;

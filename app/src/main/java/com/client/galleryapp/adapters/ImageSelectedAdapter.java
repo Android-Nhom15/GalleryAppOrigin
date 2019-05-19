@@ -1,4 +1,4 @@
-package com.client.galleryapp;
+package com.client.galleryapp.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,6 +10,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.client.galleryapp.R;
+import com.client.galleryapp.resourcedata.Photo;
 
 import java.util.List;
 

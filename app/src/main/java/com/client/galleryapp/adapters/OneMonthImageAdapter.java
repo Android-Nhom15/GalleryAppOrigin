@@ -1,4 +1,4 @@
-package com.client.galleryapp;
+package com.client.galleryapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.client.galleryapp.FullScreenPhoto;
+import com.client.galleryapp.R;
 
 import java.io.File;
 import java.util.ArrayList;

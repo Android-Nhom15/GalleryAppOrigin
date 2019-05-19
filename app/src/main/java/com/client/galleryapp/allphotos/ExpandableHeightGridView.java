@@ -1,4 +1,4 @@
-package com.client.galleryapp;
+package com.client.galleryapp.allphotos;
 
 import android.content.Context;
 import android.util.AttributeSet;

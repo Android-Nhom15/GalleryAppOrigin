@@ -1,4 +1,4 @@
-package com.client.galleryapp;
+package com.client.galleryapp.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.client.galleryapp.R;
 
 import java.util.ArrayList;
 
