@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     package="com.client.galleryapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,18 +14,19 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        app:fontFamily="@font/bad_script"
         android:theme="@style/AppTheme">
-        <activity android:name=".PhotoEdit" />
+        <activity android:name=".filtercoler.PhotoEdit" />
         <activity android:name=".FullScreenPhoto" />
         <activity
-            android:name=".ListPhotoSelectedAcitivity"
+            android:name=".collage.ListPhotoSelectedAcitivity"
             android:label="SelectPhotos"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShowAnAlbum" />
+        <activity android:name=".tabalbum.ShowAnAlbum" />
         <activity android:name=".SelectPhotoActivity" />
         <activity
             android:name=".MainActivity"
@@ -36,6 +38,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.client.galleryapp;
+package com.client.galleryapp.collage;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.client.galleryapp.R;
+import com.client.galleryapp.SelectPhotoActivity;
 
 public class TabCollage extends Fragment {
     FloatingActionButton fab_collage;

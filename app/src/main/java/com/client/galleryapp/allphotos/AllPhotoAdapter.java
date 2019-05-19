@@ -1,4 +1,4 @@
-package com.client.galleryapp;
+package com.client.galleryapp.allphotos;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.client.galleryapp.resourcedata.JDate;
+import com.client.galleryapp.adapters.OneMonthImageAdapter;
+import com.client.galleryapp.R;
+
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -56,12 +61,13 @@ public class AllPhotoAdapter extends BaseAdapter {
             viewHolder = (AllPhotoAdapter.ViewHolder) convertView.getTag();
         }
 
-        Calendar calendar = new GregorianCalendar();
+        Calendar calendar = Calendar.getInstance();
         calendar.setTime(timeline.get(position).getDate());
         int year = calendar.get(Calendar.YEAR);
         //Add one to month {0 - 11}
-        int month = calendar.get(Calendar.MONTH) + 1;
-        String mDateMonth = "Tháng " + month + ", " + year;
+        int month = calendar.get(Calendar.MONTH);
+        String[] months = new DateFormatSymbols().getMonths();
+        String mDateMonth = months[month] + " - " + year;
 
         viewHolder.txtDateMonth.setText(mDateMonth);
 

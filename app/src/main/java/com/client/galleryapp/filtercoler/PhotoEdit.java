@@ -1,4 +1,4 @@
-package com.client.galleryapp;
+package com.client.galleryapp.filtercoler;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
@@ -10,6 +10,8 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.client.galleryapp.R;
+import com.client.galleryapp.adapters.RecyclerViewAdapter;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -21,6 +21,12 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.client.galleryapp.collage.GalleryItemAdapter;
+import com.client.galleryapp.allphotos.TabAllPhoto;
+import com.client.galleryapp.collage.TabCollage;
+import com.client.galleryapp.resourcedata.Photo;
+import com.client.galleryapp.tabalbum.TabAlbum;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {

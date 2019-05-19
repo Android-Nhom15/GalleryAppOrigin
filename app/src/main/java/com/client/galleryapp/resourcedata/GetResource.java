@@ -1,9 +1,11 @@
-package com.client.galleryapp;
+package com.client.galleryapp.resourcedata;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+
+import com.client.galleryapp.tabalbum.Album;
 
 import java.io.File;
 import java.util.ArrayList;

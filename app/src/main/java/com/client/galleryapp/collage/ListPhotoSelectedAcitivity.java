@@ -1,10 +1,14 @@
-package com.client.galleryapp;
+package com.client.galleryapp.collage;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.client.galleryapp.adapters.ImageSelectedAdapter;
+import com.client.galleryapp.R;
+import com.client.galleryapp.resourcedata.Photo;
 
 import java.util.ArrayList;
 

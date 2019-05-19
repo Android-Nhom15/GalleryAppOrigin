@@ -21,6 +21,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.client.galleryapp.collage.GalleryItemAdapter;
+import com.client.galleryapp.collage.ListPhotoSelectedAcitivity;
+import com.client.galleryapp.resourcedata.Photo;
 import com.client.galleryapp.utils.ConstantDataManager;
 import com.client.galleryapp.utils.Libraries;
 

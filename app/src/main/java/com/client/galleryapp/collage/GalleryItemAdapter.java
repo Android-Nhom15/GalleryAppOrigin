@@ -1,13 +1,11 @@
-package com.client.galleryapp;
+package com.client.galleryapp.collage;
 
 import android.content.Context;
-import android.media.Image;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +14,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.client.galleryapp.resourcedata.Photo;
+import com.client.galleryapp.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

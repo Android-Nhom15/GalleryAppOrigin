@@ -1,4 +1,4 @@
-package com.client.galleryapp;
+package com.client.galleryapp.tabalbum;
 
 import java.io.File;
 import java.util.ArrayList;
