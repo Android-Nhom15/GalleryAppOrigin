@@ -8,14 +8,15 @@
 
     <TextView
         android:id="@+id/txtDateMonth"
+        app:fontFamily="@font/dancing_script"
+        tools:fontFamily="@font/dancing_script"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp"
-        app:fontFamily="@font/dancing_script"
-        android:textSize="16sp"
         android:text="Tháng 5 - 2015"
         android:textColor="#000000"
+        android:textSize="16sp"
         tools:layout_editor_absoluteX="80dp"
         tools:layout_editor_absoluteY="16dp" />
 

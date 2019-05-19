@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/imageViewFullScreen"
         android:background="@android:color/transparent"
-        android:text="Sửa" />
+    android:text="Sửa" />
 
     <Button
         android:id="@+id/deletePhoto"
