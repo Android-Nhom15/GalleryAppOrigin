@@ -14,14 +14,14 @@
         android:text="Sửa" />
 
     <Button
-        android:id="@+id/deletePhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="90dp"
-        android:background="@android:color/transparent"
-        android:fontFamily="@font/dancing_script"
-        android:layout_gravity="right|top"
-        android:text="Xóa" />
+    android:id="@+id/deletePhoto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="90dp"
+    android:background="@android:color/transparent"
+    android:fontFamily="@font/dancing_script"
+    android:layout_gravity="right|top"
+    android:text="Xóa" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/imageViewFullScreen"

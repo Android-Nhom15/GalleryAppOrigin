@@ -51,33 +51,17 @@ public class PhotoEdit extends Activity {
                 Date currentTime = Calendar.getInstance().getTime();
                 DateFormat df = new SimpleDateFormat("HH:mm:ss");
                 String date = df.format(currentTime.getTime());
-                date = date.replace(":","");
-
-                String extend = file.getName().substring(file.getName().lastIndexOf("."));
 
 
-                String filename = file.getName().substring(0,file.getName().lastIndexOf(".")) + "_" + date + extend;
-                File sd = new File(Environment.getExternalStorageDirectory()+ File.separator +"GalaryApp");
-                if (!sd.exists()) {
-                    sd.mkdirs();
-                }
-                File dest = new File(sd, filename);
-
-                Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();;
-                try {
-                    FileOutputStream out = new FileOutputStream(dest);
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
-                    out.flush();
-                    out.close();
-                    Toast.makeText(PhotoEdit.this, "Đã lưu thành công", Toast.LENGTH_LONG).show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+//                String extend = file.getName().substring(file.getName().lastIndexOf("."));
 
 
+                String filename = file.getName().substring(0,file.getName().lastIndexOf(".")) + "_" + date;
+
+                Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+                saveBitmap(bitmap,filename);
             }
         });
-
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         final File file = (File)getIntent().getExtras().get("img");
@@ -110,6 +94,22 @@ public class PhotoEdit extends Activity {
         mNames.add("Tint");
         initRecyclerView();
 
+    }
+
+    private void saveBitmap(Bitmap bmp,String fileName){
+        try {
+            File sd = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator +"GalaryApp");
+            if (!sd.exists()) {
+                sd.mkdirs();
+            }
+            File f = new File(sd , fileName+".png");
+            FileOutputStream fos = new FileOutputStream(f);
+            bmp.compress(Bitmap.CompressFormat.PNG,90,fos);
+            Toast.makeText(PhotoEdit.this,"Đã lưu",Toast.LENGTH_SHORT).show();
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     private void initRecyclerView(){
