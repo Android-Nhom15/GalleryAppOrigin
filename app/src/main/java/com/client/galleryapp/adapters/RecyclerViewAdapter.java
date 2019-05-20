@@ -11,14 +11,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.client.galleryapp.R;
-import com.client.galleryapp.filtercoler.ImageFilters;
-import com.mukesh.image_processing.ImageProcessor;
+import com.client.galleryapp.filtercolor.ImageFilters;
 
 import java.io.File;
 import java.lang.reflect.Array;
@@ -75,7 +75,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                 ImageFilters imageFilters = new ImageFilters();
 
-
+                Button saveImageButton = ((Activity)mContext).findViewById(R.id.saveImageButton);
+                if (position == 0)
+                {
+                    saveImageButton.setEnabled(false);
+                } else {
+                    saveImageButton.setEnabled(false);
+                }
 
                 if (filterPos != position)
                 {

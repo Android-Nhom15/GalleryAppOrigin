@@ -27,6 +27,7 @@
             android:id="@+id/saveImageButton"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:enabled="false"
             android:layout_alignLeft="@+id/cancelButton"
             android:background="@android:color/transparent"
             android:text="Lưu"

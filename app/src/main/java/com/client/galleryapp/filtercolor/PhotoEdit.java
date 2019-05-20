@@ -1,4 +1,4 @@
-package com.client.galleryapp.filtercoler;
+package com.client.galleryapp.filtercolor;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
@@ -31,6 +31,7 @@ import java.util.Date;
 public class PhotoEdit extends Activity {
     ImageView imageView;
     Button saveImageButton;
+    Button cancelButton;
     private static final String TAG = "MainActivity";
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<Integer> mImageUrls = new ArrayList<>();
@@ -60,6 +61,14 @@ public class PhotoEdit extends Activity {
 
                 Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
                 saveBitmap(bitmap,filename);
+            }
+        });
+
+        cancelButton = findViewById(R.id.cancelButton);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

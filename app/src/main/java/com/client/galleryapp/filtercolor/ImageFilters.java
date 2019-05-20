@@ -1,4 +1,4 @@
-package com.client.galleryapp.filtercoler;
+package com.client.galleryapp.filtercolor;
 
 
 import android.graphics.Bitmap;
