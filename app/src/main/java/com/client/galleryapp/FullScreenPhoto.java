@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.ExifInterface;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
@@ -17,13 +18,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
+
 import com.client.galleryapp.filtercolor.PhotoEdit;
 
 import com.bumptech.glide.Glide;
 import com.github.chrisbanes.photoview.PhotoView;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class FullScreenPhoto extends Activity {
     int selectedPos;
@@ -32,6 +39,7 @@ public class FullScreenPhoto extends Activity {
     ArrayList<File> fileImages;
     Button edit;
     Button del;
+    Button detail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +49,7 @@ public class FullScreenPhoto extends Activity {
         selectedPos = getIntent().getExtras().getInt("img");
         edit =(Button) findViewById(R.id.editPhoto);
         del = (Button) findViewById(R.id.deletePhoto);
+        detail = (Button) findViewById(R.id.detailPhoto);
         fileImages = (ArrayList<File>) getIntent().getExtras().get("list");
         if(sender != null)
         {
@@ -62,7 +71,80 @@ public class FullScreenPhoto extends Activity {
                 AlertDialogDeleteImage(selectedPos);
             }
         });
+        detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View v) {
+                int pos = viewPager.getCurrentItem();
+                //showExif(fileImages.get(pos).toURI());
+                ExifInterface exifInterface = null;
+                try {
+                    exifInterface = new ExifInterface(fileImages.get(pos).toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
+                String exif="Chi Tiết : " ;
+
+                exif+= "\n\nTên: "+fileImages.get(pos).getName() ;
+
+
+                exif+= "\n\nĐường dẫn: \n"+fileImages.get(pos).getPath();
+
+                exif+= "\n\nDung Lượng: "+fileImages.get(pos).length()+" KB";
+
+                Date lastModDate = new Date(fileImages.get(pos).lastModified());
+
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(lastModDate);
+                int year = calendar.get(Calendar.YEAR);
+                //Add one to month {0 - 11}
+                int month = calendar.get(Calendar.MONTH);
+                month+=1;
+                //String[] months = new DateFormatSymbols().getMonths();
+
+                int day = calendar.get(Calendar.DATE);
+
+                String mDateMonth = day+"/" +month+ "/" + year;
+
+                exif+= "\n\nNgày: "+ mDateMonth;
+
+
+                if(Integer.parseInt(exifInterface.getAttribute(ExifInterface.TAG_IMAGE_WIDTH))  == 0 || Integer.parseInt(exifInterface.getAttribute(ExifInterface.TAG_IMAGE_LENGTH))==0)
+                {
+                    exif += "\n\nKích Thước: Chưa rõ";
+                }
+                else
+                {
+                    exif += "\n\nKích Thước: " +
+                            exifInterface.getAttribute(ExifInterface.TAG_IMAGE_WIDTH) +"x" +exifInterface.getAttribute(ExifInterface.TAG_IMAGE_LENGTH);
+                }
+
+//                exif += "\n\nNgày: " +
+//                        exifInterface.getAttribute(ExifInterface.TAG_DATETIME);
+
+//                exif += "\n TAG_TYPE: " +
+//                        exifInterface.getAttribute(ExifInterface.TAG_SCENE_TYPE);
+//                exif += "\n TAG_MODEL: " +
+//                        exifInterface.getAttribute(ExifInterface.TAG_MODEL);
+//                exif += "\n TAG_ORIENTATION: " +
+//                        exifInterface.getAttribute(ExifInterface.TAG_ORIENTATION);
+//                exif += "\n TAG_FOCAL_LENGTH: " +
+//                        exifInterface.getAttribute(ExifInterface.TAG_FOCAL_LENGTH);
+//
+//                exif += "\n SIZE: " +
+//                        exifInterface.getAttribute(ExifInterface.TAG_DEFAULT_CROP_SIZE);
+//
+//                exif += "\n COPYRIGHT: " +
+//                        exifInterface.getAttribute(ExifInterface.TAG_COPYRIGHT);
+
+                //parcelFileDescriptor.close();
+
+                Toast.makeText(getApplicationContext(),
+                        exif,
+                        Toast.LENGTH_LONG).show();
+            }
+        });
 
 
     }
