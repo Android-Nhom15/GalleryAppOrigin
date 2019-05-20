@@ -1,10 +1,13 @@
 package com.client.galleryapp.filtercolor;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -107,20 +110,44 @@ public class PhotoEdit extends Activity {
 
     private void saveBitmap(Bitmap bmp,String fileName){
         try {
-            File sd = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator +"GalaryApp");
+            File sd = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "GalaryApp");
             if (!sd.exists()) {
                 sd.mkdirs();
             }
-            File f = new File(sd , fileName+".png");
+            sd.setReadable(true, false); //Sets everyone's permissions to readable
+            sd.setWritable(true, false);
+            sd.setExecutable(true);
+            File f = new File(sd, fileName + ".png");
             FileOutputStream fos = new FileOutputStream(f);
-            bmp.compress(Bitmap.CompressFormat.PNG,90,fos);
-            Toast.makeText(PhotoEdit.this,"Đã lưu",Toast.LENGTH_SHORT).show();
+            bmp.compress(Bitmap.CompressFormat.PNG, 90, fos);
+
+            fos.flush();
+            fos.close();
+            callBroadCast();
         }
         catch(Exception ex){
             ex.printStackTrace();
         }
     }
-
+    public void callBroadCast() {
+        if (Build.VERSION.SDK_INT >= 14) {
+            Log.e("-->", " >= 14");
+            MediaScannerConnection.scanFile(this, new String[]{Environment.getExternalStorageDirectory().toString()}, null, new MediaScannerConnection.OnScanCompletedListener() {
+                /*
+                 *   (non-Javadoc)
+                 * @see android.media.MediaScannerConnection.OnScanCompletedListener#onScanCompleted(java.lang.String, android.net.Uri)
+                 */
+                public void onScanCompleted(String path, Uri uri) {
+                    Log.e("ExternalStorage", "Scanned " + path + ":");
+                    Log.e("ExternalStorage", "-> uri=" + uri);
+                }
+            });
+        } else {
+            Log.e("-->", " < 14");
+            sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
+                    Uri.parse("file://" + Environment.getExternalStorageDirectory())));
+        }
+    }
     private void initRecyclerView(){
         Log.d(TAG, "initRecyclerView: init recyclerview");
 

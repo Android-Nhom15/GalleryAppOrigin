@@ -44,7 +44,7 @@ public class TabAlbum extends Fragment {
                         gridView.setAdapter(albumAdapter);
                         swipeLayout.setRefreshing(false);
                     }
-                }, 2000); // Delay in millis
+                }, 800); // Delay in millis
             }
         });
 
