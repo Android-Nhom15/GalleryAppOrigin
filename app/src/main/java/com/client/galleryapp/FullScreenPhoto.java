@@ -7,17 +7,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
-import android.text.Layout;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 
 import com.bumptech.glide.Glide;
-import com.client.galleryapp.filtercoler.PhotoEdit;
+import com.client.galleryapp.filtercolor.PhotoEdit;
 import com.github.chrisbanes.photoview.PhotoView;
 
 import java.io.File;
