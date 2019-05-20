@@ -1,4 +1,4 @@
-package com.client.galleryapp.filtercoler;
+package com.client.galleryapp.filtercolor;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.client.galleryapp.MainActivity;
 import com.client.galleryapp.R;
 import com.client.galleryapp.adapters.RecyclerViewAdapter;
 
@@ -66,7 +65,7 @@ public class PhotoEdit extends Activity {
                 Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();;
                 try {
                     FileOutputStream out = new FileOutputStream(dest);
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
                     out.flush();
                     out.close();
                     Toast.makeText(PhotoEdit.this, "Đã lưu thành công", Toast.LENGTH_LONG).show();

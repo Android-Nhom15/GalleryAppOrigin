@@ -16,6 +16,14 @@
         android:layout_gravity="right">
 
         <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@android:color/transparent"
+            android:text="Huỷ"
+            android:textColor="@color/button_default"
+            android:layout_weight="1"/>
+        <Button
             android:id="@+id/saveImageButton"
             android:layout_width="match_parent"
             android:layout_height="30dp"
@@ -24,14 +32,7 @@
             android:text="Lưu"
             android:textColor="@color/button_default"
             android:layout_weight="1"/>
-        <Button
-            android:id="@+id/cancelButton"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="@android:color/transparent"
-            android:text="Huỷ"
-            android:textColor="@color/button_default"
-            android:layout_weight="1"/>
+
     </LinearLayout>
 
 

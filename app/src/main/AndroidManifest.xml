@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         app:fontFamily="@font/bad_script"
         android:theme="@style/AppTheme">
-        <activity android:name=".filtercoler.PhotoEdit" />
+        <activity android:name=".filtercolor.PhotoEdit" />
         <activity android:name=".FullScreenPhoto" />
         <activity
             android:name=".collage.ListPhotoSelectedAcitivity"

@@ -13,6 +13,7 @@
         android:layout_marginTop="10dp"
         android:textColor="@android:color/black"
         app:fontFamily="@font/dancing_script"
+        android:fontFamily="@font/dancing_script"
         tools:layout_editor_absoluteX="80dp"
         tools:layout_editor_absoluteY="16dp" />
 
