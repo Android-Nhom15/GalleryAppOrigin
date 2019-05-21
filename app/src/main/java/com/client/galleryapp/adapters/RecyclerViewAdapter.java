@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -94,8 +96,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                             .placeholder(R.drawable.waitting_for_load)
                             .into(photoEditorView);
                     ColorMatrix matrix = new ColorMatrix();
+                    Paint paint = new Paint();
                     ColorMatrixColorFilter filter;
                     filterPos = position;
+                    Bitmap photo = ((BitmapDrawable) photoEditorView.getDrawable()).getBitmap();
                 switch (position)
                 {
                     case Original:
@@ -103,31 +107,28 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         break;
                     case BW:
                         matrix.setSaturation(0.0f);
-                        filter = new ColorMatrixColorFilter(matrix);
-                        photoEditorView.setColorFilter(filter);
                         break;
 
                     case Summer:
                         matrix.setSaturation(2.0f);
-                        filter = new ColorMatrixColorFilter(matrix);
-                        photoEditorView.setColorFilter(filter);
                         break;
 
                     case Cold:
                         matrix.setSaturation(0.7f);
-                        filter = new ColorMatrixColorFilter(matrix);
-                        photoEditorView.setColorFilter(filter);
                         break;
 
                     case Tint:
                         matrix.setSaturation(1.6f);
-                        filter = new ColorMatrixColorFilter(matrix);
-                        photoEditorView.setColorFilter(filter);
                         break;
 
                     default:
                         break;
                 }
+
+                    filter = new ColorMatrixColorFilter(matrix);
+                    paint.setColorFilter(filter);
+                    Canvas canvas = new Canvas(photo);
+                    canvas.drawBitmap(photo,0,0,paint);
 
                 Toast.makeText(mContext, mNames.get(position), Toast.LENGTH_SHORT).show();
                 }
