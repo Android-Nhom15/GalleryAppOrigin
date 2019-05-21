@@ -47,7 +47,7 @@ public class TabAllPhoto extends Fragment {
                         gridView.setAdapter(timelineAdapter);
                         swipeLayout.setRefreshing(false);
                     }
-                }, 2000); // Delay in millis
+                }, 800); // Delay in millis
             }
         });
 

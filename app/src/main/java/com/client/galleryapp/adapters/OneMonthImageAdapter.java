@@ -42,12 +42,6 @@ public class OneMonthImageAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return 0;
     }
-
-    //Đâu
-    //Cứ như merge thôi. Lấy cái
-    // Sao pull fail
-
-
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
