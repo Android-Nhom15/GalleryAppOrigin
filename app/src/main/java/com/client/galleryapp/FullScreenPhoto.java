@@ -4,21 +4,26 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.ExifInterface;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.client.galleryapp.filtercolor.PhotoEdit;
 
@@ -32,6 +37,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 public class FullScreenPhoto extends Activity {
     int selectedPos;
     SliderAdapter adapter;
@@ -40,10 +47,14 @@ public class FullScreenPhoto extends Activity {
     Button edit;
     Button del;
     Button detail;
+    FrameLayout frameLayout;
+    FrameLayout frameLayout1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen_photo);
+        frameLayout = (FrameLayout) findViewById(R.id.full_screen);
+        frameLayout1 = (FrameLayout) findViewById(R.id.TabOption);
         viewPager = findViewById(R.id.imageViewFullScreen);
         final String sender=this.getIntent().getExtras().getString("SENDER_KEY");
         selectedPos = getIntent().getExtras().getInt("img");
@@ -51,6 +62,10 @@ public class FullScreenPhoto extends Activity {
         del = (Button) findViewById(R.id.deletePhoto);
         detail = (Button) findViewById(R.id.detailPhoto);
         fileImages = (ArrayList<File>) getIntent().getExtras().get("list");
+        Typeface typeface = ResourcesCompat.getFont(getBaseContext().getApplicationContext(), R.font.dancing_script);
+        edit.setTypeface(typeface);
+        del.setTypeface(typeface);
+        detail.setTypeface(typeface);
         if(sender != null)
         {
             this.receiveData(selectedPos, fileImages);
@@ -245,8 +260,18 @@ public class FullScreenPhoto extends Activity {
                     .placeholder(R.drawable.waitting_for_load)
                     .into(photoView);
             container.addView(view,0);
+            photoView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick( View v) {
+                    if (frameLayout1.getVisibility() == View.INVISIBLE)
+                        frameLayout1.setVisibility(View.VISIBLE);
+                    else
+                        frameLayout1.setVisibility(View.INVISIBLE);
+                }
+            });
             return view;
         }
+
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {

@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/select_photo_content"
-    tools:context=".SelectPhotoActivity">
+    android:id="@+id/select_photo_content">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -42,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:layout_below="@+id/gridview_an_album"
-        android:background="#404040"
+        android:background="#eeeeee"
         android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
 </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

@@ -2,6 +2,7 @@ package com.client.galleryapp.allphotos;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.v4.content.res.ResourcesCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,7 +72,9 @@ public class AllPhotoAdapter extends BaseAdapter {
         String mDateMonth = months[month] + " - " + year;
 
         viewHolder.txtDateMonth.setText(mDateMonth);
-
+        viewHolder.txtDateMonth.setTextSize(20f);
+        Typeface typeface = ResourcesCompat.getFont(context, R.font.dancing_script);
+        viewHolder.txtDateMonth.setTypeface(typeface);
         // Load ảnh vào gridview
 
         OneMonthImageAdapter imagesAdapter = new OneMonthImageAdapter(context, timeline.get(position).getFileImage());

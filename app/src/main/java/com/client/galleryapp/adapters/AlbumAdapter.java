@@ -1,7 +1,9 @@
 package com.client.galleryapp.adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.net.Uri;
+import android.support.v4.content.res.ResourcesCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,8 +70,12 @@ public class AlbumAdapter extends BaseAdapter {
                     .placeholder(R.drawable.waitting_for_load)
                     .into(viewHolder.mIcon);
         viewHolder.mAlbumName.setText(albumList.get(position).getName());
+        Typeface typeface = ResourcesCompat.getFont(context, R.font.dancing_script);
+        viewHolder.mAlbumName.setTypeface(typeface);
+        viewHolder.mAlbumName.setTextSize(20f);
         String k = String.valueOf(albumList.get(position).getImages().size());
         viewHolder.mNumberOfPhotos.setText(k);
+        viewHolder.mNumberOfPhotos.setTypeface(typeface);
         return convertView;
     }
 }

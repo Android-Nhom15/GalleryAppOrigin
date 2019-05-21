@@ -3,8 +3,11 @@ package com.client.galleryapp.tabalbum;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,6 +36,7 @@ public class ShowAnAlbum extends Activity {
     int selectedPos;
     ArrayList<Album> mAlbum = new ArrayList<>();
     String _AlbumName;
+    String _Number;
     ArrayList<File> mPhotoViewList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +49,15 @@ public class ShowAnAlbum extends Activity {
         mAlbum = getResource.getAllShownImagesPath();
         mPhotoViewList = mAlbum.get(selectedPos).getImages();
         _AlbumName = mAlbum.get(selectedPos).getName();
+        _Number = " (" + mAlbum.get(selectedPos).getImages().size() +" Ảnh)";
         ImagesAnAlbumAdapter adapter = new ImagesAnAlbumAdapter(this, R.layout.gridview_item_of_an_album, mPhotoViewList);
         gridView.setAdapter(adapter);
-        textView.setText(_AlbumName);
+        textView.setText(_AlbumName + _Number);
+        Typeface typeface = ResourcesCompat.getFont(this, R.font.dancing_script);
+        textView.setTypeface(typeface);
+        textView.setTextSize(20f);
         gridView.setOnItemClickListener(itemClickListener);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initAlbumRecyclerView();
     }
 
@@ -90,9 +98,6 @@ public class ShowAnAlbum extends Activity {
             return 0;
         }
 
-        private class ViewHolder {
-            ImageView photo;
-        }
 
 
 

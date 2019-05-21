@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,10 +58,9 @@ public class ListAlbumAdapter extends RecyclerView.Adapter<ListAlbumAdapter.View
                 .into(viewHolder.mIcon);
 
         viewHolder.mAlbumName.setText(mAlbums.get(i).getName());
-        viewHolder.mAlbumName.setWidth(100);
-        viewHolder.mNumberOfPhotos.setWidth(100);
-        viewHolder.mAlbumName.setTextColor(Color.WHITE);
-
+        viewHolder.mAlbumName.setTextSize(18f);
+        Typeface typeface = ResourcesCompat.getFont(mContext, R.font.dancing_script);
+        viewHolder.mAlbumName.setTypeface(typeface);
         viewHolder.mIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +69,11 @@ public class ListAlbumAdapter extends RecyclerView.Adapter<ListAlbumAdapter.View
 
                 ShowAnAlbum.ImagesAnAlbumAdapter adapter = new ShowAnAlbum.ImagesAnAlbumAdapter(mContext, R.layout.gridview_item_of_an_album, mAlbums.get(i).getImages());
                 gridView.setAdapter(adapter);
-                textView.setText(mAlbums.get(i).getName());
+                String _Number = " (" + mAlbums.get(i).getImages().size() +" Ảnh)";
+                textView.setTextSize(20f);
+                textView.setText(mAlbums.get(i).getName() + _Number);
+                Typeface typeface = ResourcesCompat.getFont(mContext, R.font.dancing_script);
+                textView.setTypeface(typeface);
 
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
