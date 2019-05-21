@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
@@ -67,13 +71,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View view) {
                 final int Original = 0;
-                final int SnowEffect = 1;
-                final int GrayScale = 2;
-                final int Brightness = 3;
+                final int BW = 1;
+                final int Summer = 2;
+                final int Cold = 3;
                 final int Tint = 4;
                 Log.d(TAG, "onClick: clicked on an image: " + mNames.get(position));
 
-                ImageFilters imageFilters = new ImageFilters();
+               // ImageFilters imageFilters = new ImageFilters();
 
                 Button saveImageButton = ((Activity)mContext).findViewById(R.id.saveImageButton);
                 if (position == 0)
@@ -89,42 +93,36 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                             .fitCenter()
                             .placeholder(R.drawable.waitting_for_load)
                             .into(photoEditorView);
-
-                    Bitmap bitmap;
-                    bitmap = ((BitmapDrawable) photoEditorView.getDrawable()).getBitmap();
-
-
+                    ColorMatrix matrix = new ColorMatrix();
+                    ColorMatrixColorFilter filter;
                     filterPos = position;
                 switch (position)
                 {
-//                    case Original:
-//                        Glide.with(mContext).load(Uri.fromFile(mFile))
-//                                .fitCenter()
-//                                .placeholder(R.drawable.waitting_for_load)
-//                                .into(photoEditorView);
-//                        break;
-                    case SnowEffect:
-                        bitmap = imageFilters.applySnowEffect(bitmap);
-                        photoEditorView.setImageBitmap(bitmap);
-
+                    case Original:
+                        photoEditorView.clearColorFilter();
+                        break;
+                    case BW:
+                        matrix.setSaturation(0.0f);
+                        filter = new ColorMatrixColorFilter(matrix);
+                        photoEditorView.setColorFilter(filter);
                         break;
 
-                    case GrayScale:
-                        bitmap = imageFilters.applyGreyscaleEffect(bitmap);
-                        photoEditorView.setImageBitmap(bitmap);
-
+                    case Summer:
+                        matrix.setSaturation(2.0f);
+                        filter = new ColorMatrixColorFilter(matrix);
+                        photoEditorView.setColorFilter(filter);
                         break;
 
-                    case Brightness:
-                        bitmap = imageFilters.applyBrightnessEffect(bitmap, 30);
-                        photoEditorView.setImageBitmap(bitmap);
-
+                    case Cold:
+                        matrix.setSaturation(0.7f);
+                        filter = new ColorMatrixColorFilter(matrix);
+                        photoEditorView.setColorFilter(filter);
                         break;
 
                     case Tint:
-                        bitmap = imageFilters.applyTintEffect(bitmap, 10);
-                        photoEditorView.setImageBitmap(bitmap);
-
+                        matrix.setSaturation(1.6f);
+                        filter = new ColorMatrixColorFilter(matrix);
+                        photoEditorView.setColorFilter(filter);
                         break;
 
                     default:

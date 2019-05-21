@@ -108,14 +108,14 @@ public class PhotoEdit extends Activity {
         mImageUrls.add(R.drawable.origin);
         mNames.add("Original");
 
-        mImageUrls.add(R.drawable.snow);
-        mNames.add("Snow");
-
         mImageUrls.add(R.drawable.grayscale);
-        mNames.add("Gray Scale");
+        mNames.add("Black White");
+
+        mImageUrls.add(R.drawable.snow);
+        mNames.add("Summner");
 
         mImageUrls.add(R.drawable.brightness);
-        mNames.add("Brightness");
+        mNames.add("Cold");
 
         mImageUrls.add(R.drawable.tint);
         mNames.add("Tint");
