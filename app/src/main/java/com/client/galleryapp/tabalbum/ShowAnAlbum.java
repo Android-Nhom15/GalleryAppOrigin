@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.client.galleryapp.FullScreenPhoto;
+import com.client.galleryapp.adapters.ListAlbumAdapter;
+import com.client.galleryapp.adapters.RecyclerViewAdapter;
 import com.client.galleryapp.resourcedata.GetResource;
 import com.client.galleryapp.R;
 
@@ -44,6 +49,8 @@ public class ShowAnAlbum extends Activity {
         gridView.setAdapter(adapter);
         textView.setText(_AlbumName);
         gridView.setOnItemClickListener(itemClickListener);
+
+        initAlbumRecyclerView();
     }
 
     public AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
@@ -56,7 +63,8 @@ public class ShowAnAlbum extends Activity {
             startActivity(intent);
         }
     };
-    public class ImagesAnAlbumAdapter extends BaseAdapter {
+
+    public static class ImagesAnAlbumAdapter extends BaseAdapter {
         private Context context;
         private int layout;
         private ArrayList<File> photoViewList;
@@ -87,6 +95,7 @@ public class ShowAnAlbum extends Activity {
         }
 
 
+
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -99,6 +108,18 @@ public class ShowAnAlbum extends Activity {
                     .into(iv_photo);
             return convertView;
         }
+
+
+    }
+
+    private void initAlbumRecyclerView(){
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView list_in_an_album = findViewById(R.id.list_in_an_album);
+        list_in_an_album.setLayoutManager(layoutManager);
+
+        ListAlbumAdapter adapter = new ListAlbumAdapter(this, mAlbum, R.layout.gridview_item_of_an_album);
+        list_in_an_album.setAdapter(adapter);
     }
 
 }

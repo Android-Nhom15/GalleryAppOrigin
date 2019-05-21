@@ -80,7 +80,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 {
                     saveImageButton.setEnabled(false);
                 } else {
-                    saveImageButton.setEnabled(false);
+                    saveImageButton.setEnabled(true);
                 }
 
                 if (filterPos != position)

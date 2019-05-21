@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/icon"
@@ -17,23 +17,25 @@
         android:id="@+id/AlbumName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:fontFamily="@font/dancing_script"
-        />
+        app:fontFamily="@font/dancing_script" />
 
     <TextView
         android:id="@+id/NumberOfPhotos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:textAlignment="center"
         android:textColor="#000000"
-        app:fontFamily="@font/dancing_script"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        app:fontFamily="@font/dancing_script" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:padding="10dp" />
+
 </LinearLayout>

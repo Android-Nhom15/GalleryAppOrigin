@@ -1,6 +1,7 @@
 package com.client.galleryapp.filtercolor;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -60,7 +61,22 @@ public class PhotoEdit extends Activity {
                 String filename = file.getName().substring(0,file.getName().lastIndexOf(".")) + "_" + date;
 
                 Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-                saveBitmap(bitmap,filename);
+                try {
+                    File sd = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator +"GalaryApp");
+                    if (!sd.exists()) {
+                        sd.mkdirs();
+                    }
+                    File f = new File(sd , filename+".png");
+                    FileOutputStream fos = new FileOutputStream(f);
+                    bitmap.compress(Bitmap.CompressFormat.PNG,100,fos);
+                    fos.flush();
+                    fos.close();
+
+                    Toast.makeText(PhotoEdit.this,"Đã lưu",Toast.LENGTH_LONG).show();
+                }
+                catch(Exception ex){
+                    ex.printStackTrace();
+                }
             }
         });
 
@@ -103,22 +119,6 @@ public class PhotoEdit extends Activity {
         mNames.add("Tint");
         initRecyclerView();
 
-    }
-
-    private void saveBitmap(Bitmap bmp,String fileName){
-        try {
-            File sd = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator +"GalaryApp");
-            if (!sd.exists()) {
-                sd.mkdirs();
-            }
-            File f = new File(sd , fileName+".png");
-            FileOutputStream fos = new FileOutputStream(f);
-            bmp.compress(Bitmap.CompressFormat.PNG,90,fos);
-            Toast.makeText(PhotoEdit.this,"Đã lưu",Toast.LENGTH_SHORT).show();
-        }
-        catch(Exception ex){
-            ex.printStackTrace();
-        }
     }
 
     private void initRecyclerView(){
