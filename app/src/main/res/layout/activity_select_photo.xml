@@ -6,15 +6,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/select_photo_content"
     tools:context=".SelectPhotoActivity">
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
 
-
-    </android.support.design.widget.AppBarLayout>
-
-    <include layout="@layout/content_main" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_main" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/layoutSend"
@@ -52,5 +47,17 @@
             app:layout_constraintRight_toRightOf="@id/button_send"
             app:layout_constraintTop_toTopOf="@id/button_send" />
     </android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="83dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="0dp"
+        android:text="Delete"
+        app:layout_anchor="@+id/include"
+        app:srcCompat="@android:drawable/ic_menu_send"
+        app:layout_anchorGravity="bottom|left|center_horizontal|end"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.design.widget.CoordinatorLayout>

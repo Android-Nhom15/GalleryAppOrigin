@@ -1,11 +1,14 @@
 package com.client.galleryapp.collage;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.client.galleryapp.FullScreenPhoto;
 import com.client.galleryapp.adapters.ImageSelectedAdapter;
 import com.client.galleryapp.R;
 import com.client.galleryapp.resourcedata.Photo;
@@ -23,6 +26,7 @@ public class ListPhotoSelectedAcitivity extends AppCompatActivity {
 
         Intent intent=getIntent();
         ArrayList<Photo> picturesSelected=intent.getParcelableArrayListExtra("listpicture");
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerViewImageSelected.setLayoutManager(layoutManager);

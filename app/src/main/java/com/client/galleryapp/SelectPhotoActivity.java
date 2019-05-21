@@ -1,15 +1,20 @@
 package com.client.galleryapp;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,8 +23,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.client.galleryapp.collage.GalleryItemAdapter;
 import com.client.galleryapp.collage.ListPhotoSelectedAcitivity;
@@ -27,6 +34,7 @@ import com.client.galleryapp.resourcedata.Photo;
 import com.client.galleryapp.utils.ConstantDataManager;
 import com.client.galleryapp.utils.Libraries;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class SelectPhotoActivity extends AppCompatActivity {
@@ -39,6 +47,7 @@ public class SelectPhotoActivity extends AppCompatActivity {
     private ImageView imageViewButtonSend;
     private TextView textViewSelectedCount;
     private ConstraintLayout constraintLayoutSend;
+    private Button buttonDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +58,16 @@ public class SelectPhotoActivity extends AppCompatActivity {
         imageViewButtonSend = findViewById(R.id.button_send);
         textViewSelectedCount = findViewById(R.id.textViewSeletedCount);
         constraintLayoutSend = findViewById(R.id.layoutSend);
-        ImageView imageViewSendDetail = findViewById(R.id.button_send);
+        buttonDelete = findViewById(R.id.button_delete);
+        buttonDelete.setOnClickListener(new View.OnClickListener(){
 
-        imageViewSendDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialogDeleteImage();
+            }
+        });
+
+        imageViewButtonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intentDetail = new Intent(SelectPhotoActivity.this, ListPhotoSelectedAcitivity.class);
@@ -64,6 +80,7 @@ public class SelectPhotoActivity extends AppCompatActivity {
         Log.i("asd",textViewSelectedCount.getText().toString());
 
         pictures = new ArrayList<>();
+
         recyclerViewGallery = findViewById(R.id.recyclerViewGallery);
         recyclerViewGallery.setLayoutManager(new GridLayoutManager(this, 3));
         adapter = new GalleryItemAdapter(this, pictures, new GalleryItemAdapter.ItemSelectedChangeListener() {
@@ -109,6 +126,62 @@ public class SelectPhotoActivity extends AppCompatActivity {
             }.start();
         }
     }
+    private void AlertDialogDeleteImage ()
+    {
+        AlertDialog.Builder myBuilder = new AlertDialog.Builder(SelectPhotoActivity.this);
+        myBuilder
+                .setTitle("Cảnh báo!")
+                .setMessage("Bạn Có Chắc Chắn Xóa Ảnh?")
+                .setNegativeButton("Có", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichOne) {
+                        ArrayList<Photo> picturesSelected = adapter.getAllPictureSelected();
+                        for(int i = 0 ; i < picturesSelected.size(); i++ ) {
+                            Log.e("sadsad",Integer.toString(i));
+                            File FileDeletePath = new File(picturesSelected.get(i).getPath());
+                            File FilePhoto = new File(picturesSelected.get(i).toString());
+                            deleteImage(picturesSelected.get(i).getPath());
+                        }
+                    }
+                })
+                .setPositiveButton("Không", null)
+                .show();
+    }
+    public void deleteImage(String file_dj_path) {
+        File fdelete = new File(file_dj_path);
+        if (fdelete.exists()) {
+            if (fdelete.delete()) {
+                Log.e("-->", "file Deleted :" + file_dj_path);
+                sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(fdelete)));
+                finish();
+                startActivity(getIntent());
+            } else {
+                Log.e("-->", "file not Deleted :" + file_dj_path);
+            }
+        } else {
+            Log.e("-->", "file does not exists :" + file_dj_path);
+        }
+    }
+
+    public void callBroadCast() {
+        if (Build.VERSION.SDK_INT >= 14) {
+            Log.e("-->", " >= 14");
+            MediaScannerConnection.scanFile(this, new String[]{Environment.getExternalStorageDirectory().toString()}, null, new MediaScannerConnection.OnScanCompletedListener() {
+                /*
+                 *   (non-Javadoc)
+                 * @see android.media.MediaScannerConnection.OnScanCompletedListener#onScanCompleted(java.lang.String, android.net.Uri)
+                 */
+                public void onScanCompleted(String path, Uri uri) {
+                    Log.e("ExternalStorage", "Scanned " + path + ":");
+                    Log.e("ExternalStorage", "-> uri=" + uri);
+                }
+            });
+        } else {
+            Log.e("-->", " < 14");
+            sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
+                    Uri.parse("file://" + Environment.getExternalStorageDirectory())));
+        }
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
