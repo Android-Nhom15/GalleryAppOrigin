@@ -64,7 +64,7 @@ public class PhotoEdit extends Activity {
 
                 Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
                 try {
-                    File sd = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator +"GalaryApp");
+                    File sd = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator +"GalaryApp"+ File.separator+ "PhotoFilter");
                     if (!sd.exists()) {
                         sd.mkdirs();
                     }
@@ -73,12 +73,13 @@ public class PhotoEdit extends Activity {
                     bitmap.compress(Bitmap.CompressFormat.PNG,100,fos);
                     fos.flush();
                     fos.close();
-
+                    galleryAddPic(sd+ File.separator +filename+".png");
                     Toast.makeText(PhotoEdit.this,"Đã lưu",Toast.LENGTH_LONG).show();
                 }
                 catch(Exception ex){
                     ex.printStackTrace();
                 }
+
             }
         });
 
@@ -101,6 +102,13 @@ public class PhotoEdit extends Activity {
         }catch(Exception ex){
             ex.printStackTrace();
         }
+    }
+    private void galleryAddPic(String currentPhotoPath) {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(currentPhotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);
     }
     private void getImages(){
         Log.d(TAG, "initImageBitmaps: preparing bitmaps.");
