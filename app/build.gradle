@@ -48,4 +48,5 @@ dependencies {
 
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.github.yalantis:ucrop:2.2.2'
+    implementation 'com.jcmore2.collage:collage:1.0.0'
 }

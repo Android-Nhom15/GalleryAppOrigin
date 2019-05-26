@@ -21,7 +21,6 @@ public class ImagesAdapter extends BaseAdapter {
     private Context context;
     private int layout;
     private ArrayList<File> photoViewList;
-    Bitmap bitmap;
 
     public ImagesAdapter(Context context, int layout, ArrayList<File> photoViewList) {
         this.context = context;
