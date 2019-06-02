@@ -57,10 +57,6 @@ public class PhotoEdit extends Activity {
                 DateFormat df = new SimpleDateFormat("HH:mm:ss");
                 String date = df.format(currentTime.getTime());
 
-
-//                String extend = file.getName().substring(file.getName().lastIndexOf("."));
-
-
                 String filename = file.getName().substring(0,file.getName().lastIndexOf(".")) + "_" + date;
 
                 Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();

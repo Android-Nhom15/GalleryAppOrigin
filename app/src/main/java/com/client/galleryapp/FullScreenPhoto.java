@@ -78,7 +78,7 @@ public class FullScreenPhoto extends Activity {
             edit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick( View v) {
-                    Intent intent = new Intent(getBaseContext().getApplicationContext(), PhotoEdit.class);
+                    Intent intent = new Intent(getBaseContext().getApplicationContext(), BlurActivity.class);
                     intent.setFlags(Intent. FLAG_ACTIVITY_NEW_TASK);
                     int pos = viewPager.getCurrentItem();
                     intent.putExtra("img", fileImages.get(viewPager.getCurrentItem()));
