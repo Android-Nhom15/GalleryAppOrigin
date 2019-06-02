@@ -45,6 +45,7 @@ public class PhotoEdit extends Activity {
         setContentView(R.layout.activity_photo_editor);
         imageView = (ImageView) findViewById(R.id.photoEditorView);
 
+        RecyclerViewAdapter.isInit = false;
 
         saveImageButton = findViewById(R.id.saveImageButton);
         saveImageButton.setOnClickListener(new View.OnClickListener() {

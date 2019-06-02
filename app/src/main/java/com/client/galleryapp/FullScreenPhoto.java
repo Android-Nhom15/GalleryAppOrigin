@@ -82,6 +82,7 @@ public class FullScreenPhoto extends Activity {
                     intent.setFlags(Intent. FLAG_ACTIVITY_NEW_TASK);
                     int pos = viewPager.getCurrentItem();
                     intent.putExtra("img", fileImages.get(viewPager.getCurrentItem()));
+
                     startActivity(intent);
                 }
             });

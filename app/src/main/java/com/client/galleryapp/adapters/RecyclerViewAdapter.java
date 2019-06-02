@@ -41,6 +41,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private static final String TAG = "RecyclerViewAdapter";
+    public static boolean isInit = false;
 
     //vars
     private ArrayList<String> mNames = new ArrayList<>();
@@ -53,7 +54,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     Bitmap origin;
 
     Canvas canvas;
-    static boolean isInit = false;
+
     public RecyclerViewAdapter(Context context, ArrayList<String> names, ArrayList<Integer> imageUrls, File file) {
         mNames = names;
         mImageUrls = imageUrls;
