@@ -101,6 +101,10 @@ public class SelectPhotoActivity extends AppCompatActivity {
         });
         recyclerViewGallery.setAdapter(adapter);
 
+        int sidePadding = getResources().getDimensionPixelOffset(R.dimen.sidePadding);
+        int topPadding = getResources().getDimensionPixelOffset(R.dimen.topPadding);
+        recyclerViewGallery.addItemDecoration(new RecyclerDecoration(sidePadding, topPadding));
+
         handler = new Handler();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(SelectPhotoActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             Libraries.requestPermissionStorage(SelectPhotoActivity.this);
