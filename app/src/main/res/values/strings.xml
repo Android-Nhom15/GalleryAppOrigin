@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">GalleryApp</string>
+    <string name="app_name">Gallery</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="tab_text_1">ALL</string>
     <string name="tab_text_2">Album</string>
-    <string name="tab_text_3">Multi select</string>
+    <string name="tab_text_3">COLLAGE</string>
 </resources>

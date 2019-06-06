@@ -4,13 +4,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.ExifInterface;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -23,21 +27,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.client.galleryapp.filtercolor.PhotoEdit;
 
 import com.bumptech.glide.Glide;
+import com.client.galleryapp.imagecrop.Main_CropImage;
 import com.github.chrisbanes.photoview.PhotoView;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
-import static android.widget.Toast.LENGTH_SHORT;
 
 public class FullScreenPhoto extends Activity {
     int selectedPos;
@@ -46,6 +47,7 @@ public class FullScreenPhoto extends Activity {
     ArrayList<File> fileImages;
     Button edit;
     Button del;
+    Button crop;
     Button detail;
     FrameLayout frameLayout;
     FrameLayout frameLayout1;
@@ -60,12 +62,15 @@ public class FullScreenPhoto extends Activity {
         selectedPos = getIntent().getExtras().getInt("img");
         edit =(Button) findViewById(R.id.editPhoto);
         del = (Button) findViewById(R.id.deletePhoto);
+        crop = (Button) findViewById(R.id.cropPhoto);
         detail = (Button) findViewById(R.id.detailPhoto);
         fileImages = (ArrayList<File>) getIntent().getExtras().get("list");
         Typeface typeface = ResourcesCompat.getFont(getBaseContext().getApplicationContext(), R.font.dancing_script);
         edit.setTypeface(typeface);
         del.setTypeface(typeface);
         detail.setTypeface(typeface);
+        crop.setTypeface(typeface);
+
         if(sender != null)
         {
             this.receiveData(selectedPos, fileImages);
@@ -73,19 +78,32 @@ public class FullScreenPhoto extends Activity {
             edit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick( View v) {
-                    Intent intent = new Intent(getBaseContext().getApplicationContext(), PhotoEdit.class);
+                    Intent intent = new Intent(getBaseContext().getApplicationContext(), BlurActivity.class);
                     intent.setFlags(Intent. FLAG_ACTIVITY_NEW_TASK);
                     int pos = viewPager.getCurrentItem();
                     intent.putExtra("img", fileImages.get(viewPager.getCurrentItem()));
+
                     startActivity(intent);
                 }
-            });
+            }); crop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View v) {
+                Toast.makeText(getBaseContext().getApplicationContext(),"day roi", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getBaseContext().getApplicationContext(), Main_CropImage.class);
+                intent.setFlags(Intent. FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("imgcrop", fileImages.get(viewPager.getCurrentItem()));
+                startActivity(intent);
+
+            }
+        });
         del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick( View v) {
                 AlertDialogDeleteImage(selectedPos);
             }
         });
+
+
         detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick( View v) {
@@ -135,34 +153,15 @@ public class FullScreenPhoto extends Activity {
                             exifInterface.getAttribute(ExifInterface.TAG_IMAGE_WIDTH) +"x" +exifInterface.getAttribute(ExifInterface.TAG_IMAGE_LENGTH);
                 }
 
-//                exif += "\n\nNgày: " +
-//                        exifInterface.getAttribute(ExifInterface.TAG_DATETIME);
-
-//                exif += "\n TAG_TYPE: " +
-//                        exifInterface.getAttribute(ExifInterface.TAG_SCENE_TYPE);
-//                exif += "\n TAG_MODEL: " +
-//                        exifInterface.getAttribute(ExifInterface.TAG_MODEL);
-//                exif += "\n TAG_ORIENTATION: " +
-//                        exifInterface.getAttribute(ExifInterface.TAG_ORIENTATION);
-//                exif += "\n TAG_FOCAL_LENGTH: " +
-//                        exifInterface.getAttribute(ExifInterface.TAG_FOCAL_LENGTH);
-//
-//                exif += "\n SIZE: " +
-//                        exifInterface.getAttribute(ExifInterface.TAG_DEFAULT_CROP_SIZE);
-//
-//                exif += "\n COPYRIGHT: " +
-//                        exifInterface.getAttribute(ExifInterface.TAG_COPYRIGHT);
-
-                //parcelFileDescriptor.close();
-
                 Toast.makeText(getApplicationContext(),
                         exif,
                         Toast.LENGTH_LONG).show();
             }
         });
-
-
     }
+
+
+
     private void receiveData(int selectedPos, ArrayList<File> ListImage) {
         try {
             adapter = new SliderAdapter(this, ListImage);
@@ -199,14 +198,21 @@ public class FullScreenPhoto extends Activity {
         File fdelete = new File(file_dj_path);
         if (fdelete.exists()) {
             if (fdelete.delete()) {
-                Log.e("-->", "file Deleted :" + file_dj_path);
+                Toast.makeText(this,"Đã xóa ảnh", Toast.LENGTH_LONG).show();
                 callBroadCast();
-            } else {
+                galleryAddPic(file_dj_path);            } else {
                 Log.e("-->", "file not Deleted :" + file_dj_path);
             }
         }
     }
 
+    private void galleryAddPic(String currentPhotoPath) {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(currentPhotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);
+    }
     public void callBroadCast() {
         if (Build.VERSION.SDK_INT >= 14) {
             Log.e("-->", " >= 14");
@@ -226,7 +232,6 @@ public class FullScreenPhoto extends Activity {
                     Uri.parse("file://" + Environment.getExternalStorageDirectory())));
         }
     }
-
 
     public class SliderAdapter extends PagerAdapter {
         private Context mContext;
@@ -269,6 +274,9 @@ public class FullScreenPhoto extends Activity {
                         frameLayout1.setVisibility(View.INVISIBLE);
                 }
             });
+
+
+
             return view;
         }
 

@@ -77,8 +77,6 @@ public class SelectPhotoActivity extends AppCompatActivity {
             }
         });
 
-        Log.i("asd",textViewSelectedCount.getText().toString());
-
         pictures = new ArrayList<>();
 
         recyclerViewGallery = findViewById(R.id.recyclerViewGallery);

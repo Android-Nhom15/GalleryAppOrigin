@@ -6,10 +6,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
@@ -39,6 +41,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private static final String TAG = "RecyclerViewAdapter";
+    public static boolean isInit = false;
 
     //vars
     private ArrayList<String> mNames = new ArrayList<>();
@@ -48,11 +51,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     ImageView photoEditorView;
     int filterPos = 0;
+    Bitmap origin;
+
+    Canvas canvas;
+
     public RecyclerViewAdapter(Context context, ArrayList<String> names, ArrayList<Integer> imageUrls, File file) {
         mNames = names;
         mImageUrls = imageUrls;
         mContext = context;
         mFile = file;
+
     }
 
     @Override
@@ -69,6 +77,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.image.setImageResource(mImageUrls.get(position));
         holder.name.setText(mNames.get(position));
 
+
+
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +89,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 final int Tint = 4;
                 Log.d(TAG, "onClick: clicked on an image: " + mNames.get(position));
 
-               // ImageFilters imageFilters = new ImageFilters();
+                if (!isInit)
+                {
+                    isInit = true;
+                    origin = ((BitmapDrawable) photoEditorView.getDrawable()).getBitmap();
+                }
 
                 Button saveImageButton = ((Activity)mContext).findViewById(R.id.saveImageButton);
                 if (position == 0)
@@ -91,19 +105,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                 if (filterPos != position)
                 {
-                    Glide.with(mContext).load(Uri.fromFile(mFile))
-                            .fitCenter()
-                            .placeholder(R.drawable.waitting_for_load)
-                            .into(photoEditorView);
+                    photoEditorView.setImageBitmap(origin);
                     ColorMatrix matrix = new ColorMatrix();
-                    Paint paint = new Paint();
-                    ColorMatrixColorFilter filter;
                     filterPos = position;
-                    Bitmap photo = ((BitmapDrawable) photoEditorView.getDrawable()).getBitmap();
+
                 switch (position)
                 {
                     case Original:
-                        photoEditorView.clearColorFilter();
+                        photoEditorView.setImageBitmap(origin);
                         break;
                     case BW:
                         matrix.setSaturation(0.0f);
@@ -125,16 +134,29 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         break;
                 }
 
-                    filter = new ColorMatrixColorFilter(matrix);
-                    paint.setColorFilter(filter);
-                    Canvas canvas = new Canvas(photo);
-                    canvas.drawBitmap(photo,0,0,paint);
-
+                if (position != Original)
+                {
+                    Bitmap photo = getThemedBitmap(origin, matrix);
+                    photoEditorView.setImageBitmap(photo);
+                }
                 Toast.makeText(mContext, mNames.get(position), Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
+    }
+
+
+    public static Bitmap getThemedBitmap(Bitmap origin, ColorMatrix colorMatrix) {
+        Bitmap resultBitmap = Bitmap.createBitmap(origin.getWidth(), origin.getHeight(),
+                Bitmap.Config.ARGB_8888);
+        Paint p = new Paint();
+        ColorFilter filter = new ColorMatrixColorFilter(colorMatrix);
+        p.setColorFilter(filter);
+        Canvas canvas = new Canvas(resultBitmap);
+        canvas.drawBitmap(origin, 0, 0, p);
+
+        return resultBitmap;
     }
 
     @Override

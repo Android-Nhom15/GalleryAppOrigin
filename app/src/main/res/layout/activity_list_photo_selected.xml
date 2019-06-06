@@ -1,14 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     tools:context=".collage.ListPhotoSelectedAcitivity">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewSelected"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/cancelCollage"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Huỷ"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/button_default"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/saveCollage"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            android:layout_height="40dp"
+            android:text="Lưu"
+            android:textColor="@color/button_default"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="686dp"
+        android:layout_marginTop="0dp"
+        android:paddingTop="40dp">
+
+        <com.jcmore2.collage.CollageView
+            android:id="@+id/collage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dip"></com.jcmore2.collage.CollageView>
+    </LinearLayout>
+
+</RelativeLayout>

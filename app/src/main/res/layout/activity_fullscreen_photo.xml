@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/full_screen"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    tools:context=".FullScreenPhoto">
     <android.support.v4.view.ViewPager
         android:id="@+id/imageViewFullScreen"
         android:scaleType="center"
@@ -14,6 +16,16 @@
         android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/cropPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|top"
+            android:layout_marginRight="270dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/dancing_script"
+            android:text="Cắt" />
 
         <Button
             android:id="@+id/detailPhoto"
