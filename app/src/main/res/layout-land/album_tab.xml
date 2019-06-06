@@ -9,6 +9,7 @@
     <android.support.v4.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipe_container"
+        android:background="#EEEEEE"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <GridView
@@ -16,7 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:columnWidth="100dp"
-        android:numColumns="5"/>
+        android:numColumns="5"
+        android:paddingBottom="40dp"/>
     </android.support.v4.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>

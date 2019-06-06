@@ -48,7 +48,7 @@ public class SelectPhotoActivity extends AppCompatActivity {
     private ImageView imageViewButtonSend;
     private TextView textViewSelectedCount;
     private ConstraintLayout constraintLayoutSend;
-    private FloatingActionButton buttonDelete;
+    public FloatingActionButton buttonDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +59,14 @@ public class SelectPhotoActivity extends AppCompatActivity {
         imageViewButtonSend = findViewById(R.id.button_send);
         textViewSelectedCount = findViewById(R.id.textViewSeletedCount);
         constraintLayoutSend = findViewById(R.id.layoutSend);
-        buttonDelete = findViewById(R.id.fab_minus);
-        buttonDelete.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                AlertDialogDeleteImage();
-            }
-        });
+        //buttonDelete = findViewById(R.id.fab_delete);//???
+//        buttonDelete.setOnClickListener(new View.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View v) {
+//                AlertDialogDeleteImage();
+//            }
+//        });
         imageViewButtonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

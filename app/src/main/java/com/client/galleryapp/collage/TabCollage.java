@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.client.galleryapp.FullScreenPhoto;
 import com.client.galleryapp.R;
@@ -44,7 +45,7 @@ public class TabCollage extends Fragment {
         fab_collage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity().getBaseContext(),  SelectPhotoActivity.class);
+                Intent intent = new Intent(getContext(),  SelectPhotoActivity.class);
                 startActivity(intent);
             }
         });

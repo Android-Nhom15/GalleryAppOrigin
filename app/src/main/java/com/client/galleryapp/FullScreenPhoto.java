@@ -123,7 +123,7 @@ public class FullScreenPhoto extends Activity {
 
                 exif+= "\n\nĐường dẫn: \n"+fileImages.get(pos).getPath();
 
-                exif+= "\n\nDung Lượng: "+fileImages.get(pos).length()+" KB";
+                    exif+= "\n\nDung Lượng: "+fileImages.get(pos).length()+" KB";
 
                 Date lastModDate = new Date(fileImages.get(pos).lastModified());
 
