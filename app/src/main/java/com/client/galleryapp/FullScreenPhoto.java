@@ -85,14 +85,7 @@ public class FullScreenPhoto extends Activity {
 
                     startActivity(intent);
                 }
-            });
-        del.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick( View v) {
-                AlertDialogDeleteImage(selectedPos);
-            }
-        });
-        crop.setOnClickListener(new View.OnClickListener() {
+            }); crop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick( View v) {
                 Toast.makeText(getBaseContext().getApplicationContext(),"day roi", Toast.LENGTH_SHORT).show();
@@ -103,6 +96,13 @@ public class FullScreenPhoto extends Activity {
 
             }
         });
+        del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View v) {
+                AlertDialogDeleteImage(selectedPos);
+            }
+        });
+
 
         detail.setOnClickListener(new View.OnClickListener() {
             @Override
