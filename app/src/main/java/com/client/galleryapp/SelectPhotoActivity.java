@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -47,7 +48,7 @@ public class SelectPhotoActivity extends AppCompatActivity {
     private ImageView imageViewButtonSend;
     private TextView textViewSelectedCount;
     private ConstraintLayout constraintLayoutSend;
-    private Button buttonDelete;
+    private FloatingActionButton buttonDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class SelectPhotoActivity extends AppCompatActivity {
         imageViewButtonSend = findViewById(R.id.button_send);
         textViewSelectedCount = findViewById(R.id.textViewSeletedCount);
         constraintLayoutSend = findViewById(R.id.layoutSend);
-        buttonDelete = findViewById(R.id.button_delete);
+        buttonDelete = findViewById(R.id.fab_minus);
         buttonDelete.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -66,7 +67,6 @@ public class SelectPhotoActivity extends AppCompatActivity {
                 AlertDialogDeleteImage();
             }
         });
-
         imageViewButtonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

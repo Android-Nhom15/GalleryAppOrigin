@@ -32,7 +32,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".tabalbum.ShowAnAlbum" />
-        <activity android:name=".SelectPhotoActivity" />
+        <activity android:name=".SelectPhotoActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
