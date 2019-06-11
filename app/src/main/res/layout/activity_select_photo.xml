@@ -27,7 +27,7 @@
             android:padding="4dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_send"
+            app:srcCompat="@drawable/start"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -35,26 +35,16 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:gravity="center"
-            android:minHeight="20dp"
             android:minWidth="20dp"
+            android:minHeight="20dp"
             android:paddingLeft="2dp"
             android:paddingRight="2dp"
-            android:textColor="@android:color/black"
-            app:layout_constraintBottom_toTopOf="@id/button_send"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="18sp"
             app:layout_constraintDimensionRatio="H,1:1"
             app:layout_constraintRight_toRightOf="@id/button_send"
             app:layout_constraintTop_toTopOf="@id/button_send" />
     </android.support.constraint.ConstraintLayout>
-
-    <!--<android.support.design.widget.FloatingActionButton-->
-        <!--android:id="@+id/fab_delete"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="bottom"-->
-        <!--android:layout_margin="16dp"-->
-        <!--app:backgroundTint="#E8EAED"-->
-        <!--app:fabSize="normal"-->
-        <!--app:srcCompat="@drawable/delete"/>-->
 
 
 </android.support.design.widget.CoordinatorLayout>
