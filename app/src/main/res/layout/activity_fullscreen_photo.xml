@@ -5,55 +5,58 @@
     android:id="@+id/full_screen"
     android:layout_height="fill_parent"
     tools:context=".FullScreenPhoto">
+
     <android.support.v4.view.ViewPager
         android:id="@+id/imageViewFullScreen"
-        android:scaleType="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <FrameLayout
-        android:background="#eeeeee"
-        android:id="@+id/TabOption"
-        android:visibility="invisible"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:scaleType="center" />
+    <!--<FrameLayout-->
+        <!--android:background="#eeeeee"-->
+        <!--android:id="@+id/TabOption"-->
+        <!--android:visibility="invisible"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
 
-        <Button
-            android:id="@+id/cropPhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|top"
-            android:layout_marginRight="270dp"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/dancing_script"
-            android:text="Cắt" />
+        <!--<Button-->
+            <!--android:id="@+id/cropPhoto"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="right|top"-->
+            <!--android:layout_marginRight="270dp"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--android:fontFamily="@font/dancing_script"-->
+            <!--android:text="Cắt" />-->
 
-        <Button
-            android:id="@+id/detailPhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|top"
-            android:layout_marginRight="180dp"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/dancing_script"
-            android:text="Chi Tiết" />
+        <!--<Button-->
+            <!--android:id="@+id/detailPhoto"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="right|top"-->
+            <!--android:layout_marginRight="180dp"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--android:fontFamily="@font/dancing_script"-->
+            <!--android:text="Chi Tiết" />-->
 
-        <Button
-            android:id="@+id/deletePhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|top"
-            android:layout_marginRight="90dp"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/dancing_script"
-            android:text="Xóa" />
+        <!--<Button-->
+            <!--android:id="@+id/deletePhoto"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="right|top"-->
+            <!--android:layout_marginRight="90dp"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--android:fontFamily="@font/dancing_script"-->
+            <!--android:text="Xóa" />-->
 
-        <Button
-            android:id="@+id/editPhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|top"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/dancing_script"
-            android:text="Sửa" />
-    </FrameLayout>
+        <!--<Button-->
+            <!--android:id="@+id/editPhoto"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="right|top"-->
+            <!--android:layout_marginRight="90dp"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--android:fontFamily="@font/dancing_script"-->
+            <!--android:text="Sửa" />-->
+
+    <!--</FrameLayout>-->
 </FrameLayout>

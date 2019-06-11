@@ -26,7 +26,7 @@ public class RenderScriptGaussianBlur {
         this.renderScript = RenderScript.create(context);
     }
 
-    public Bitmap gaussianBlur(@IntRange(from = 1, to = 25) int radius, Bitmap original) {
+    public Bitmap gaussianBlur(@IntRange(from = 0, to = 25) int radius, Bitmap original) {
 //        Allocation input = Allocation.createFromBitmap(renderScript, original);
 //        Allocation output = Allocation.createTyped(renderScript, input.getType());
 //        ScriptIntrinsicBlur scriptIntrinsicBlur = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript));

@@ -18,7 +18,7 @@
         app:fontFamily="@font/bad_script">
         <activity android:name=".imagecrop.Main_CropImage"></activity>
         <activity android:name=".filtercolor.PhotoEdit" />
-        <activity android:name=".FullScreenPhoto" />
+        <activity android:name=".FullScreenPhoto" android:theme="@style/AppTheme" android:label="Full Photo"/>
         <activity
             android:name=".collage.ListPhotoSelectedAcitivity"
             android:label="SelectPhotos"
@@ -46,7 +46,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BlurActivity" android:theme="@style/AppTheme" android:label="Gaussian Blur"/>
+        <activity android:name=".BlurActivity" android:label="Gaussian Blur"/>
 
         <meta-data
             android:name="preloaded_fonts"

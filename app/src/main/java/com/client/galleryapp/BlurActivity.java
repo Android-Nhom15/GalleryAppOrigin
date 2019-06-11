@@ -35,7 +35,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class BlurActivity extends AppCompatActivity {
+public class BlurActivity extends AppCompatActivity{
 
     ImageView blurImageView;
     SeekBar blurSeekBar;
@@ -134,7 +134,7 @@ public class BlurActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    blurImageView.setImageBitmap(blur.gaussianBlur(1, bitmap));
+                    blurImageView.setImageBitmap(blur.gaussianBlur(0, bitmap));
                 }
             }
 
@@ -146,9 +146,10 @@ public class BlurActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 int radius = seekBar.getProgress();
-                if (radius < 1) {
-                    radius = 1;
+                if (radius == 0) {
+                    //radius = 1;
                     btnSave.setVisible(false);
+
                 }
                 else{
                     btnSave.setVisible(true);
@@ -167,47 +168,5 @@ public class BlurActivity extends AppCompatActivity {
 
     }
 
-    public Bitmap loadBitmap(String url)
-    {
-        Bitmap bm = null;
-        InputStream is = null;
-        BufferedInputStream bis = null;
-        try
-        {
-            URLConnection conn = new URL(url).openConnection();
-            conn.connect();
-            is = conn.getInputStream();
-            bis = new BufferedInputStream(is, 8192);
-            bm = BitmapFactory.decodeStream(bis);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        finally {
-            if (bis != null)
-            {
-                try
-                {
-                    bis.close();
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-            if (is != null)
-            {
-                try
-                {
-                    is.close();
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return bm;
-    }
+
 }
