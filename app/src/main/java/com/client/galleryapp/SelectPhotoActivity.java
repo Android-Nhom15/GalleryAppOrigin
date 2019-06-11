@@ -85,13 +85,13 @@ public class SelectPhotoActivity extends AppCompatActivity {
             @Override
             public void onItemSelectedChange(int number) {
                 if (number > 0) {
-                    if(number == 4){
+                    if(number <= 5 && number >= 2){
                         imageViewButtonSend.setVisibility(View.VISIBLE);
                     } else {
                         imageViewButtonSend.setVisibility(View.INVISIBLE);
                     }
                     constraintLayoutSend.setVisibility(View.VISIBLE);
-                    textViewSelectedCount.setText(number + " /4" );
+                    textViewSelectedCount.setText(Integer.toString(number));
                 } else {
                     constraintLayoutSend.setVisibility(View.GONE);
                 }

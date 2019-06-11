@@ -83,7 +83,7 @@ public class GalleryItemAdapter extends RecyclerView.Adapter<GalleryItemAdapter.
                     .placeholder(R.drawable.waitting_for_load)
                     .into(imageViewPictureItem);
             if (picture.getSelectedCount() > 0) {
-                textViewSelectCount.setBackground(context.getResources().getDrawable(R.drawable.background_count_selected));
+                textViewSelectCount.setBackground(context.getResources().getDrawable(R.drawable.select));
             } else {
                 textViewSelectCount.setBackground(context.getResources().getDrawable(R.drawable.background_count_not_selected));
             }
@@ -119,8 +119,8 @@ public class GalleryItemAdapter extends RecyclerView.Adapter<GalleryItemAdapter.
                         //add object to hashmap
                         picturesSelected.add(picture);
                         //picturesSelected.add(picture);
-                        textViewSelectCount.setText(picture.getSelectedCount() + "");
-                        textViewSelectCount.setBackground(context.getResources().getDrawable(R.drawable.background_count_selected));
+//                        textViewSelectCount.setText(picture.getSelectedCount() + "");
+                        textViewSelectCount.setBackground(context.getResources().getDrawable(R.drawable.select));
                     }
 
                     listener.onItemSelectedChange(picturesSelected.size());
