@@ -36,24 +36,23 @@ public class Main_CropImage extends Activity {
         imageView = (ImageView) findViewById(R.id.imgcrop);
         try{
             file = (File)getIntent().getExtras().get("imgcrop");
-            Glide.with(this).load(Uri.fromFile(file))
-                    .fitCenter()
-                    .placeholder(R.drawable.waitting_for_load)
-                    .into(imageView);
+//            Glide.with(this).load(Uri.fromFile(file))
+//                    .fitCenter()
+//                    .placeholder(R.drawable.waitting_for_load)
+//                    .into(imageView);
         }catch(Exception ex){
             ex.printStackTrace();
         }
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick( View v) {
-                startActivityForResult(new Intent().setAction(Intent.ACTION_GET_CONTENT)
-                .setType("image/*"), 1);
-            }
-        });
+
+        Uri uri = Uri.fromFile(file);
+        if(uri!=null)
+            startCrop(uri);
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode, resultCode, data);
+
         if(requestCode==1&&resultCode==RESULT_OK) {
             Uri uri = Uri.fromFile(file);
             if(uri!=null)
@@ -79,16 +78,20 @@ public class Main_CropImage extends Activity {
                     fos.flush();
                     fos.close();
                     galleryAddPic(sd + File.separator + filename + ".png");
-                    Toast.makeText(Main_CropImage.this, "Đã lưu", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Main_CropImage.this, "Hoàn Thành", Toast.LENGTH_LONG).show();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
+        }else
+        {
+            finish();
         }
     }
 
     private void galleryAddPic(String currentPhotoPath) {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        //Toast.makeText(Main_CropImage.this, "AddAllPic", Toast.LENGTH_LONG).show();
         File f = new File(currentPhotoPath);
         Uri contentUri = Uri.fromFile(f);
         mediaScanIntent.setData(contentUri);
@@ -96,6 +99,7 @@ public class Main_CropImage extends Activity {
     }
     private void startCrop(@NonNull Uri uri){
         String desFileName = "test.jpg";
+        //Toast.makeText(Main_CropImage.this, "startCrop", Toast.LENGTH_LONG).show();
         UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir() , desFileName)));
         uCrop.withAspectRatio(1,1);
         uCrop.withMaxResultSize(450,450);
@@ -104,6 +108,7 @@ public class Main_CropImage extends Activity {
     }
 
     private UCrop.Options getCropOption() {
+        //Toast.makeText(Main_CropImage.this, "OptionCrop", Toast.LENGTH_LONG).show();
         UCrop.Options options = new UCrop.Options();
         options.setCompressionQuality(70);
         options.setCompressionFormat(Bitmap.CompressFormat.PNG);

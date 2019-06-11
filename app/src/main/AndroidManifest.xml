@@ -18,7 +18,7 @@
         app:fontFamily="@font/bad_script">
         <activity android:name=".imagecrop.Main_CropImage"></activity>
         <activity android:name=".filtercolor.PhotoEdit" />
-        <activity android:name=".FullScreenPhoto" android:theme="@style/AppTheme" android:label="Full Photo"/>
+        <activity android:name=".FullScreenPhoto" android:theme="@style/AppTheme" android:colorMode="wideColorGamut" android:label=""/>
         <activity
             android:name=".collage.ListPhotoSelectedAcitivity"
             android:label="SelectPhotos"

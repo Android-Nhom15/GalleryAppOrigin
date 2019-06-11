@@ -1,13 +1,16 @@
 package com.client.galleryapp;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.bluetooth.BluetoothHealthAppConfiguration;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.media.ExifInterface;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -56,6 +59,7 @@ public class FullScreenPhoto extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.actionbar_fullscreenphoto, menu);
         return true;
@@ -63,6 +67,7 @@ public class FullScreenPhoto extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()){
             case R.id.btnDetail:
                 detailOnClick();
@@ -86,6 +91,7 @@ public class FullScreenPhoto extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_fullscreen_photo);
         viewPager = findViewById(R.id.imageViewFullScreen);
         final String sender=this.getIntent().getExtras().getString("SENDER_KEY");
@@ -149,13 +155,33 @@ public class FullScreenPhoto extends AppCompatActivity {
                     exifInterface.getAttribute(ExifInterface.TAG_IMAGE_WIDTH) +"x" +exifInterface.getAttribute(ExifInterface.TAG_IMAGE_LENGTH);
         }
 
+
+        if(exifInterface.getAttribute(ExifInterface.TAG_MAKE)!=null )
+        {
+            exif += "\n\nNhà Sản Xuất: " +
+                    exifInterface.getAttribute(ExifInterface.TAG_MAKE);
+
+        }
+        else
+        {
+            exif += "\n\nNhà Sản Xuất: Chưa rõ";
+        }
+        if(exifInterface.getAttribute(ExifInterface.TAG_MODEL)!=null)
+        {
+            exif += " "+
+                    exifInterface.getAttribute(ExifInterface.TAG_MODEL);
+        }
+        else{
+            exif += "";
+        }
+
+
         Toast.makeText(getApplicationContext(),
                 exif,
                 Toast.LENGTH_LONG).show();
     }
 
     private void cropOnClick(){
-        Toast.makeText(getBaseContext().getApplicationContext(),"day roi", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getBaseContext().getApplicationContext(), Main_CropImage.class);
         intent.setFlags(Intent. FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("imgcrop", fileImages.get(viewPager.getCurrentItem()));
