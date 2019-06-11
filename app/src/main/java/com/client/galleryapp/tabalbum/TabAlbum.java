@@ -26,7 +26,7 @@ public class TabAlbum extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.album_tab, container, false);
         gridView = (GridView) rootView.findViewById(R.id.album_grid_view);
-        swipeLayout = (SwipeRefreshLayout)rootView.findViewById(R.id.swipe_container);
+        swipeLayout = (SwipeRefreshLayout)rootView.findViewById(R.id.swipe_container2);
         final GetResource getResource = new GetResource(getActivity());
         mAlbum = getResource.getAllShownImagesPath();
         final AlbumAdapter albumAdapter = new AlbumAdapter(getActivity(), R.layout.album_item, mAlbum);
