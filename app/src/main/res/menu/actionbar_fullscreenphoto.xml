@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -7,25 +7,28 @@
         android:title="Chi tiết"
         android:fontFamily="@font/dancing_script"
         app:showAsAction="never" />
+
     <item
         android:id="@+id/btnCrop"
         android:title="Cắt"
         android:fontFamily="@font/dancing_script"
-        app:showAsAction="never" />
+        android:icon="@android:drawable/ic_menu_crop"
+        app:showAsAction="always" />
     <item
         android:id="@+id/btnBlur"
-        android:title="Blur"
+        android:title="Làm Mờ"
         android:fontFamily="@font/dancing_script"
         app:showAsAction="never" />
     <item
         android:id="@+id/btnFilter"
-        android:title="Filter"
+        android:title="Lọc Màu"
         android:fontFamily="@font/dancing_script"
         app:showAsAction="never" />
     <item
         android:id="@+id/btnDelete"
         android:title="Xoá"
+        android:icon="@android:drawable/ic_menu_delete"
         android:fontFamily="@font/dancing_script"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
 
 </menu>
